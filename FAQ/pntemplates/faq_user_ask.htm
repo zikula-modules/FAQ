@@ -1,0 +1,21 @@
+<!--[*  $Id$  *]-->
+<!--[include file="faq_user_menu.htm"]-->
+<h2><!--[pnml name="_FAQ_ASK"]--></h2>
+<form class="pn-form" action="<!--[pnmodurl modname="FAQ" func="create"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<div>
+	<input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module="FAQ"]-->" />
+	<label for="faq_question"><!--[pnml name="_FAQ_ASKDETAIL"]--></label>
+    <!--[if $loggedin neq true]-->
+    <div style="text-align:center">
+        <label for="faq_submittedby"><!--[pnml name=_FAQ_YOURNAME]--></label>
+        <input type="text" class="pn-form-text" name="faq[submittedby]" size="30" maxlength="255" />
+	</div>
+    <!--[/if]-->
+    <div class="pn-formrow">
+		<textarea id="faq_question" class="pn-form-text" name="faq[question]" rows="10" cols="80"></textarea>
+	</div>
+    <div class="pn-formrow" style="text-align:center">
+        <input type="submit" value="<!--[pnml name=_FAQ_ASK]-->" />
+	</div>
+</div>
+</form>

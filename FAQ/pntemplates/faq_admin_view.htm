@@ -1,0 +1,80 @@
+<!--[*  $Id$  *]-->
+<!--[pnajaxheader modname=FAQ filename=faq.js nobehaviour=true noscriptaculous=true]-->
+<!--[include file="faq_admin_menu.htm"]-->
+<!--[pnml name="_FAQ_VIEW" assign=templatetitle]-->
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname=core src=windowlist.gif set=icons/large alt=$templatetitle]--></div>
+<h2><!--[$templatetitle]--></h2>
+<!--[if $enablecategorization and $numproperties gt 0]-->
+<form action="<!--[pnmodurl modname=FAQ type=admin func=view]-->" method="post" enctype="application/x-www-form-urlencoded">
+    <div id="faq_multicategory_filter">
+        <label for="faq_property"><!--[pnml name=_CATEGORY]--></label>
+        <!--[pnml assign="lblDef" name="_CHOOSEONE"]-->
+        <!--[nocache]-->
+            <!--[if $numproperties gt 1]-->
+                <!--[html_options id="faq_property" name="faq_property" options=$properties selected=$property]-->
+            <!--[else]-->
+                <input type="hidden" id="faq_property" name="faq_property" value="<!--[$property]-->" />
+            <!--[/if]-->
+            <div id="faq_category_selectors" style="display:inline">
+            <!--[foreach from=$catregistry key=prop item=cat]-->
+                <!--[assign var=propref value=$prop|string_format:'faq_%s_category']-->
+                <!--[if $property eq $prop]-->
+                    <!--[assign var="selectedValue" value=$category]-->
+                <!--[else]-->
+                    <!--[assign var="selectedValue" value=0]-->
+                <!--[/if]-->
+                <noscript>
+                    <div class="property_selector_noscript"><label for="<!--[$propref]-->"><!--[$prop]--></label>:</div>
+                </noscript>
+                <!--[selector_category category=$cat name=$propref selectedValue=$selectedValue allValue=0 allText=$lblDef editLink=false]-->
+            <!--[/foreach]-->
+            </div>
+        <!--[/nocache]-->
+        <input name="submit" type="submit" value="<!--[pnml name="_FILTER"]-->" />
+        <input name="clear" type="submit" value="<!--[pnml name="_RESET"]-->" />
+    </div>
+</form>
+<!--[/if]-->
+<table class="pn-admintable">
+    <thead>
+        <tr>
+            <th><!--[pnml name="_ID"]--></th>
+            <th><!--[pnml name="_FAQ_QUESTION"]--></th>
+            <th><!--[pnml name="_FAQ_ANSWERED"]--></th>
+            <!--[if $enablecategorization]-->
+            <th><!--[pnml name="_CATEGORY"]--></th>
+            <!--[/if]-->
+            <th><!--[pnml name="_OPTIONS"]--></th>
+        </tr>
+    </thead>
+    <tbody>
+    <!--[foreach from=$faqs item=faq]-->    
+        <tr class="<!--[cycle values="pn-odd,pn-even"]-->">
+            <td><!--[$faq.faqid|pnvarprephtmldisplay]--></td>
+            <td><!--[$faq.question|strip_tags|pnvarprephtmldisplay|truncate:30]--></td>
+            <td>
+            <!--[if $faq.answer neq '']-->
+                <!--[pnimg modname=core set=icons/extrasmall src=button_ok.gif altml=true alt=_YES titleml=true title=_YES]-->
+            <!--[else]-->
+                <!--[pnimg modname=core set=icons/extrasmall src=button_cancel.gif altml=true alt=_NO titleml=true title=_NO]-->
+            <!--[/if]-->
+            </td>
+            <!--[if $enablecategorization]-->
+			<td>
+				<!--[assignedcategorieslist item=$faq]-->
+			</td>
+            <!--[/if]-->
+            <td>
+            <!--[ foreach item=option from=$faq.options ]-->
+                <a href="<!--[$option.url|pnvarprepfordisplay]-->"><!--[pnimg modname=core set=icons/extrasmall src=$option.image alt=$option.title]--></a>
+            <!--[ /foreach ]-->
+            </td>
+        </tr>
+	<!--[foreachelse]-->
+		<tr class="pn-admintableempty"><td colspan="5"><!--[pnml name=_NOITEMSFOUND]--></td></tr>
+    <!--[/foreach]-->
+    </tbody>
+</table>
+<!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1 img_prev=images/icons/extrasmall/previous.gif img_next=images/icons/extrasmall/next.gif]-->
+</div>

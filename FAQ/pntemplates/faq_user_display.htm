@@ -1,0 +1,26 @@
+<!--[*  $Id$  *]-->
+<!--[include file="faq_user_menu.htm"]-->
+<!--[*  $Id$  *]-->
+<h2><!--[pnml name=_FAQ_QUESTION]--></h2>
+<p><strong><!--[$question|pnmodcallhooks|pnvarprephtmldisplay]--></strong></p>
+
+<h2><!--[pnml name=_FAQ_ANSWER]--></h2>
+<p><!--[$answer|pnmodcallhooks|pnvarprephtmldisplay]--></p>
+<div style="border-top: 1px dashed #AAA">
+<ul>
+    <!--[if $submittedby neq '']-->
+    <li><!--[pnml name=_FAQ_SUBMITTEDBY username=$submittedby html=1]--></li>
+    <!--[elseif $submittedbyid neq '']-->
+	<!--[pnusergetvar name=uname uid=$submittedbyid assign=uname]-->
+    <!--[ capture assign=faqsubmittedby]--><a href="<!--[pnmodurl modname=Profile func=view uname=$uname]-->"><!--[$uname|pnvarprepfordisplay]--></a><!--[ /capture ]-->
+    <li><!--[pnml name=_FAQ_SUBMITTEDBY username=$faqsubmittedby html=1]--></li>
+    <!--[/if]-->
+    <!--[if $answeredbyid neq '']-->
+	<!--[pnusergetvar name=uname uid=$answeredbyid assign=uname]-->
+    <!--[ capture assign=faqansweredby]--><a href="<!--[pnmodurl modname=Profile func=view uname=$uname]-->"><!--[$uname|pnvarprepfordisplay]--></a><!--[ /capture ]-->
+    <li><!--[pnml name=_FAQ_ANSWEREDBY username=$faqansweredby html=1]--></li>
+    <!--[/if]-->
+</ul>
+</div>
+<!--[pnmodurl modname=FAQ func=display faqid=$faqid assign=returnurl]-->
+<!--[pnmodcallhooks hookobject=item hookaction=display hookid=$faqid module=FAQ returnurl=$returnurl]-->
