@@ -1,21 +1,25 @@
 <!--[*  $Id$  *]-->
 <!--[include file="faq_user_menu.htm"]-->
 <h2><!--[gt text="Submit a question"]--></h2>
-<form class="pn-form" action="<!--[pnmodurl modname="FAQ" func="create"]-->" method="post" enctype="application/x-www-form-urlencoded">
-<div>
-	<input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module="FAQ"]-->" />
-	<label for="faq_question"><!--[gt text="Before submitting a question please check existing FAQ's as your question may have already been answered. If not then please submit your question via the form and below. Please use clear and precise language when submitting a question. After submission your question will be reviewed by the site editor(s)."]--></label>
-    <!--[if $loggedin neq true]-->
-    <div style="text-align:center">
-        <label for="faq_submittedby"><!--[gt text="Your name"]--></label>
-        <input type="text" class="pn-form-text" name="faq[submittedby]" size="30" maxlength="255" />
-	</div>
-    <!--[/if]-->
-    <div class="pn-formrow">
-		<textarea id="faq_question" class="pn-form-text" name="faq[question]" rows="10" cols="80"></textarea>
-	</div>
-    <div class="pn-formrow" style="text-align:center">
-        <input type="submit" value="<!--[gt text="Submit a question"]-->" />
-	</div>
-</div>
+<p class="z-informationmsg"><!--[gt text="Before submitting a question please check existing FAQ's as your question may have already been answered. If not then please submit your question via the form and below. Please use clear and precise language when submitting a question. After submission your question will be reviewed by the site editor(s)."]--></p>
+<form class="z-form z-linear" action="<!--[pnmodurl modname="FAQ" func="create"]-->" method="post" enctype="application/x-www-form-urlencoded">
+    <div>
+        <input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module="FAQ"]-->" />
+        <fieldset>
+            <legend><!--[gt text="Submit a question"]--></legend>
+            <!--[if $loggedin neq true]-->
+            <div class="z-formrow">
+                <label for="faq_submittedby"><!--[gt text="Your name"]--></label>
+                <input type="text" name="faq[submittedby]" size="30" maxlength="255" />
+            </div>
+            <!--[/if]-->
+            <div class="z-formrow">
+                <label for="faq_question"><!--[gt text="Content"]--></label>
+                <textarea id="faq_question" name="faq[question]" rows="10" cols="80"></textarea>
+            </div>
+        </fieldset>
+        <div class="z-formbuttons">
+            <input type="submit" value="<!--[gt text="Submit a question"]-->" />
+        </div>
+    </div>
 </form>

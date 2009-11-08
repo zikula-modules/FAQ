@@ -1,16 +1,16 @@
 <!--[*  $Id$  *]-->
 <!--[if $func eq 'view' and $category]-->
-	<!--[include file="faq_user_menu.htm"]-->
-	<!--[array_field_isset assign="categoryname" array=$category.display_name field=$lang returnValue=1]-->
-	<!--[if $categoryname eq '']--><!--[assign var="categoryname" value=$category.name]--><!--[/if]-->
-	<!--[array_field_isset assign="categorydesc" array=$category.display_desc field=$lang returnValue=1]-->
+<!--[include file="faq_user_menu.htm"]-->
+<!--[array_field_isset assign="categoryname" array=$category.display_name field=$lang returnValue=1]-->
+<!--[if $categoryname eq '']--><!--[assign var="categoryname" value=$category.name]--><!--[/if]-->
+<!--[array_field_isset assign="categorydesc" array=$category.display_desc field=$lang returnValue=1]-->
 
-	<h2><!--[$categoryname]--></h2>
-	<!--[if $categorydesc neq '']--><p><!--[$categorydesc]--></p><!--[/if]-->
+<h2><!--[$categoryname]--></h2>
+<!--[if $categorydesc neq '']--><p><!--[$categorydesc]--></p><!--[/if]-->
 
 <!--[else]-->
 
-	<h2><!--[gt text="Recent FAQs"]--></h2>
+<h2><!--[gt text="Recent FAQs"]--></h2>
 
 <!--[/if]-->
 
@@ -18,9 +18,9 @@
 
 <h3><!--[gt text="Question"]--></h3>
 <ul>
-	<!--[foreach item=item from=$faqs]-->
-	<li><a href="#faq<!--[$item.faqid]-->"><em><!--[$item.question]--></em></a></li>
-	<!--[/foreach]-->
+    <!--[foreach item=item from=$faqs]-->
+    <li><a href="#faq<!--[$item.faqid]-->"><em><!--[$item.question]--></em></a></li>
+    <!--[/foreach]-->
 </ul>
 
 <h3><!--[gt text="Answer"]--></h3>
