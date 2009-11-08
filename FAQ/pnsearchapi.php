@@ -15,7 +15,7 @@
  **/
 function faq_searchapi_info()
 {
-    return array('title' => 'FAQ', 
+    return array('title' => 'FAQ',
                  'functions' => array('FAQ' => 'search'));
 }
 
@@ -38,6 +38,7 @@ function faq_searchapi_options($args)
  **/
 function faq_searchapi_search($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     pnModDBInfoLoad('Search');
     $pntable = pnDBGetTables();
     $faqtable = $pntable['faqanswer'];
@@ -45,9 +46,9 @@ function faq_searchapi_search($args)
     $searchTable = $pntable['search_result'];
     $searchColumn = $pntable['search_result_column'];
 
-    $where = search_construct_where($args, 
-                                    array($faqcolumn['question'], 
-                                          $faqcolumn['answer']), 
+    $where = search_construct_where($args,
+                                    array($faqcolumn['question'],
+                                          $faqcolumn['answer']),
                                     null);
 
     $sessionId = session_id();
@@ -61,12 +62,12 @@ function faq_searchapi_search($args)
     // get the result set
     $objArray = DBUtil::selectObjectArray('faqanswer', $where, 'faqid', 1, -1, '', $permFilter);
     if ($objArray === false) {
-        return LogUtil::registerError (_GETFAILED);
+        return LogUtil::registerError (__('Error! Could not load items.', $dom));
     }
 
     $addcategorytitletopermalink = pnModGetVar('FAQ', 'addcategorytitletopermalink');
 
-    $insertSql = 
+    $insertSql =
 "INSERT INTO $searchTable
   ($searchColumn[title],
    $searchColumn[text],
@@ -83,7 +84,7 @@ VALUES ";
         } else {
             $extra = serialize(array('faqid' => $obj['faqid']));
         }
-        $sql = $insertSql . '(' 
+        $sql = $insertSql . '('
                    . '\'' . DataUtil::formatForStore($obj['question']) . '\', '
                    . '\'' . DataUtil::formatForStore($obj['answer']) . '\', '
                    . '\'' . DataUtil::formatForStore($extra) . '\', '
@@ -92,7 +93,7 @@ VALUES ";
                    . '\'' . DataUtil::formatForStore($sessionId) . '\')';
         $insertResult = DBUtil::executeSQL($sql);
         if (!$insertResult) {
-            return LogUtil::registerError (_GETFAILED);
+            return LogUtil::registerError (__('Error! Could not load items.', $dom));
         }
     }
 

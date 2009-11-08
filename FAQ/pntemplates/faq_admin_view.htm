@@ -1,15 +1,15 @@
 <!--[*  $Id$  *]-->
 <!--[pnajaxheader modname=FAQ filename=faq.js nobehaviour=true noscriptaculous=true]-->
 <!--[include file="faq_admin_menu.htm"]-->
-<!--[pnml name="_FAQ_VIEW" assign=templatetitle]-->
+<!--[gt text="View FAQ list" assign=templatetitle]-->
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname=core src=windowlist.gif set=icons/large alt=$templatetitle]--></div>
+<div class="pn-adminpageicon"><!--[pnimg modname='core' src='windowlist.gif' set='icons/large' __alt=$templatetitle]--></div>
 <h2><!--[$templatetitle]--></h2>
 <!--[if $enablecategorization and $numproperties gt 0]-->
 <form action="<!--[pnmodurl modname=FAQ type=admin func=view]-->" method="post" enctype="application/x-www-form-urlencoded">
     <div id="faq_multicategory_filter">
-        <label for="faq_property"><!--[pnml name=_CATEGORY]--></label>
-        <!--[pnml assign="lblDef" name="_CHOOSEONE"]-->
+        <label for="faq_property"><!--[gt text="Category"]--></label>
+        <!--[pnml assign="lblDef" name="Choose One"]-->
         <!--[nocache]-->
             <!--[if $numproperties gt 1]-->
                 <!--[html_options id="faq_property" name="faq_property" options=$properties selected=$property]-->
@@ -31,21 +31,21 @@
             <!--[/foreach]-->
             </div>
         <!--[/nocache]-->
-        <input name="submit" type="submit" value="<!--[pnml name="_FILTER"]-->" />
-        <input name="clear" type="submit" value="<!--[pnml name="_RESET"]-->" />
+        <input name="submit" type="submit" value="<!--[gt text="Filter"]-->" />
+        <input name="clear" type="submit" value="<!--[gt text="Reset"]-->" />
     </div>
 </form>
 <!--[/if]-->
 <table class="pn-admintable">
     <thead>
         <tr>
-            <th><!--[pnml name="_ID"]--></th>
-            <th><!--[pnml name="_FAQ_QUESTION"]--></th>
-            <th><!--[pnml name="_FAQ_ANSWERED"]--></th>
+            <th><!--[gt text="Internal ID"]--></th>
+            <th><!--[gt text="Question"]--></th>
+            <th><!--[gt text="Answered"]--></th>
             <!--[if $enablecategorization]-->
-            <th><!--[pnml name="_CATEGORY"]--></th>
+            <th><!--[gt text="Category"]--></th>
             <!--[/if]-->
-            <th><!--[pnml name="_OPTIONS"]--></th>
+            <th><!--[gt text="Options"]--></th>
         </tr>
     </thead>
     <tbody>
@@ -55,9 +55,9 @@
             <td><!--[$faq.question|strip_tags|pnvarprephtmldisplay|truncate:30]--></td>
             <td>
             <!--[if $faq.answer neq '']-->
-                <!--[pnimg modname=core set=icons/extrasmall src=button_ok.gif altml=true alt=_YES titleml=true title=_YES]-->
+                <!--[pnimg modname='core' set='icons/extrasmall' src='button_ok.gif'  __alt='Yes'  __title='Yes']-->
             <!--[else]-->
-                <!--[pnimg modname=core set=icons/extrasmall src=button_cancel.gif altml=true alt=_NO titleml=true title=_NO]-->
+                <!--[pnimg modname='core' set='icons/extrasmall' src='button_cancel.gif'  __alt='No'  __title='No']-->
             <!--[/if]-->
             </td>
             <!--[if $enablecategorization]-->
@@ -66,13 +66,13 @@
 			</td>
             <!--[/if]-->
             <td>
-            <!--[ foreach item=option from=$faq.options ]-->
-                <a href="<!--[$option.url|pnvarprepfordisplay]-->"><!--[pnimg modname=core set=icons/extrasmall src=$option.image alt=$option.title]--></a>
-            <!--[ /foreach ]-->
+            <!--[foreach item=option from=$faq.options]-->
+                <a href="<!--[$option.url|pnvarprepfordisplay]-->"><!--[pnimg modname='core' set='icons/extrasmall' src=$option.image __alt=$option.title]--></a>
+            <!--[/foreach]-->
             </td>
         </tr>
 	<!--[foreachelse]-->
-		<tr class="pn-admintableempty"><td colspan="5"><!--[pnml name=_NOITEMSFOUND]--></td></tr>
+		<tr class="pn-admintableempty"><td colspan="5"><!--[gt text="No items found."]--></td></tr>
     <!--[/foreach]-->
     </tbody>
 </table>

@@ -24,6 +24,7 @@
  */
 function FAQ_user_main()
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // Security check
     if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_OVERVIEW)) {
         return LogUtil::registerPermissionError();
@@ -35,7 +36,7 @@ function FAQ_user_main()
     // load the categories system
     if (pnModGetVar('FAQ', 'enablecategorization')) {
         if (!($class = Loader::loadClass('CategoryUtil')) || !($class = Loader::loadClass('CategoryRegistryUtil'))) {
-            pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryUtil | CategoryRegistryUtil')));
+            pn_exit (__f('Error! Unable to load class [%s%]', 'CategoryUtil | CategoryRegistryUtil', $dom));
         }
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('FAQ', 'faqanswer');
         $categories = array();
@@ -48,7 +49,7 @@ function FAQ_user_main()
         $pnRender->assign('categories', $categories);
     }
 
-    $pnRender->assign('lang', pnUserGetLang());
+    $pnRender->assign('lang', ZLanguage::getLanguageCode());
     $pnRender->assign(pnModGetVar('FAQ'));
     $pnRender->assign('shorturls', pnConfigGetVar('shorturls'));
     $pnRender->assign('shorturlstype', pnConfigGetVar('shorturlstype'));
@@ -69,6 +70,7 @@ function FAQ_user_main()
  */
 function FAQ_user_view()
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // Security check
     if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_OVERVIEW)) {
         return LogUtil::registerPermissionError();
@@ -91,7 +93,7 @@ function FAQ_user_view()
     // and if its requested to list the recent faqs
     if ($modvars['enablecategorization'] && !empty($prop) && !empty($cat)) {
         if (!($class = Loader::loadClass('CategoryUtil')) || !($class = Loader::loadClass('CategoryRegistryUtil'))) {
-            pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryUtil | CategoryRegistryUtil')));
+            pn_exit (__f('Error! Unable to load class [%s%]', 'CategoryUtil | CategoryRegistryUtil', $dom));
         }
         // get the categories registered for the Pages
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('FAQ', 'faqanswer');
@@ -113,9 +115,9 @@ function FAQ_user_view()
                 foreach ($categories as $category) {
                     $catstofilter[] = $category['id'];
                 }
-                $catFilter = array($prop => $catstofilter); 
+                $catFilter = array($prop => $catstofilter);
             } else {
-            	LogUtil::registerError(_NOTAVALIDCATEGORY);
+            	LogUtil::registerError(__('Invalid category', $dom));
             }
         }
     }
@@ -135,7 +137,7 @@ function FAQ_user_view()
     $pnRender->assign('startnum', $startnum);
     $pnRender->assign('category', $cat);
     $pnRender->assign('property', $prop);
-    $pnRender->assign('lang', pnUserGetLang());
+    $pnRender->assign('lang', ZLanguage::getLanguageCode());
     $pnRender->assign($modvars);
     $pnRender->assign('shorturls', pnConfigGetVar('shorturls'));
     $pnRender->assign('shorturlstype', pnConfigGetVar('shorturlstype'));
@@ -179,6 +181,7 @@ function FAQ_user_view()
  */
 function FAQ_user_display($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     $faqid    = FormUtil::getPassedValue('faqid', isset($args['faqid']) ? $args['faqid'] : null, 'REQUEST');
     $title    = FormUtil::getPassedValue('title', isset($args['title']) ? $args['title'] : null, 'REQUEST');
     $objectid = FormUtil::getPassedValue('objectid', isset($args['objectid']) ? $args['objectid'] : null, 'REQUEST');
@@ -188,7 +191,7 @@ function FAQ_user_display($args)
 
     // Validate the essential parameters
     if ((empty($faqid) || !is_numeric($faqid)) && (empty($title))) {
-        return LogUtil::registerError(_MODARGSERROR);
+        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
     if (!empty($title)) {
         unset($faqid);
@@ -203,7 +206,7 @@ function FAQ_user_display($args)
     } else {
         $pnRender->cache_id = $title;
     }
-	
+
     // check out if the contents are cached.
     if ($pnRender->is_cached('faq_user_display.htm')) {
        return $pnRender->fetch('FAQ_user_display.htm');
@@ -218,7 +221,7 @@ function FAQ_user_display($args)
     }
 
     if ($item === false) {
-        return LogUtil::registerError(_FAQ_ITEMFAILED, 404);
+        return LogUtil::registerError(__('Failed to get any items', $dom), 404);
     }
 
     // set the page title
@@ -263,6 +266,7 @@ function FAQ_user_ask()
  */
 function FAQ_user_create($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // Get parameters from whatever input we need
     $faq = FormUtil::getPassedValue('faq', isset($args['faq']) ? $args['faq'] : null, 'POST');
 
@@ -283,7 +287,7 @@ function FAQ_user_create($args)
 
     if ($faqid != false) {
         // Success
-        LogUtil::registerStatus (_FAQ_CREATED);
+        LogUtil::registerStatus (__('Thank you for your question', $dom));
     }
 
     return pnRedirect(pnModURL('FAQ', 'user', 'view'));

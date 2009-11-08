@@ -1,0 +1,289 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Zikula component\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-07 11:03-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pnadmin.php:44 pnadminapi.php:179
+msgid "Sorry! No authorization to access this module."
+msgstr ""
+
+#: pnadmin.php:56 pnadmin.php:134 pnadmin.php:278 pnuserapi.php:81
+#: pnuser.php:39 pnuser.php:96
+msgid "Error! Unable to load class [%s%]"
+msgstr ""
+
+#: pnadmin.php:93
+msgid "Done! Item created."
+msgstr ""
+
+#: pnadmin.php:118 pnadmin.php:197 pnadminapi.php:86 pnadminapi.php:147
+msgid "No such item found."
+msgstr ""
+
+#: pnadmin.php:170
+msgid "Done! Item updated."
+msgstr ""
+
+#: pnadmin.php:229
+msgid "Done! Item deleted."
+msgstr ""
+
+#: pnadmin.php:261
+msgid "Purging of the pemalinks was successful"
+msgstr ""
+
+#: pnadmin.php:263
+msgid "Purging of the pemalinks has failed"
+msgstr ""
+
+#: pnadmin.php:312
+msgid "Edit"
+msgstr ""
+
+#: pnadmin.php:316
+msgid "Delete"
+msgstr ""
+
+#: pnadmin.php:416
+msgid "Done! Module configuration updated."
+msgstr ""
+
+#: pnuserapi.php:74 pnsearchapi.php:65 pnsearchapi.php:96
+msgid "Error! Could not load items."
+msgstr ""
+
+#: pnuserapi.php:105 pnuserapi.php:155 pnuserapi.php:221 pnuser.php:194
+#: pnadminapi.php:29 pnadminapi.php:79 pnadminapi.php:126
+msgid "Error! Could not do what you wanted. Please check your input."
+msgstr ""
+
+#: pnuser.php:120
+msgid "Invalid category"
+msgstr ""
+
+#: pnuser.php:224
+msgid "Failed to get any items"
+msgstr ""
+
+#: pnuser.php:290
+msgid "Thank you for your question"
+msgstr ""
+
+#: pnversion.php:15 pninit.php:196
+msgid "FAQ"
+msgstr ""
+
+#: pnversion.php:16
+msgid "faq"
+msgstr ""
+
+#: pnversion.php:17 pninit.php:197
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: pnadminapi.php:58 pninit.php:25
+msgid "Error! Creation attempt failed."
+msgstr ""
+
+#: pnadminapi.php:95
+msgid "Error! Sorry! Deletion attempt failed."
+msgstr ""
+
+#: pnadminapi.php:156 pninit.php:50 pninit.php:160
+msgid "Error! Update attempt failed."
+msgstr ""
+
+#: pnadminapi.php:231 pntemplates/faq_admin_view.htm:4
+#: pntemplates/faq_user_menu.htm:5
+msgid "View FAQ list"
+msgstr ""
+
+#: pnadminapi.php:234 pntemplates/faq_admin_new.htm:3
+msgid "Create a FAQ"
+msgstr ""
+
+#: pnadminapi.php:237
+msgid "Purge PermaLinks"
+msgstr ""
+
+#: pnadminapi.php:238 pntemplates/faq_admin_modifyconfig.htm:4
+#: pntemplates/faq_admin_modifyconfig.htm:5
+msgid "Settings"
+msgstr ""
+
+#: pntemplates/faq_search_options.htm:4 pntemplates/faq_admin_menu.htm:4
+#: pntemplates/faq_user_menu.htm:3
+msgid "FAQs"
+msgstr ""
+
+#: pntemplates/faq_user_view.htm:13
+msgid "Recent FAQs"
+msgstr ""
+
+#: pntemplates/faq_user_view.htm:19 pntemplates/faq_admin_view.htm:43
+#: pntemplates/faq_user_display.htm:4 pntemplates/faq_admin_new.htm:11
+#: pntemplates/faq_admin_modify.htm:15
+msgid "Question"
+msgstr ""
+
+#: pntemplates/faq_user_view.htm:26 pntemplates/faq_user_display.htm:7
+#: pntemplates/faq_admin_new.htm:20 pntemplates/faq_admin_modify.htm:24
+msgid "Answer"
+msgstr ""
+
+#: pntemplates/faq_admin_modifyconfig.htm:10
+msgid "General settings"
+msgstr ""
+
+#: pntemplates/faq_admin_modifyconfig.htm:12
+msgid "Enable categorization"
+msgstr ""
+
+#: pntemplates/faq_admin_modifyconfig.htm:16
+msgid "Items per page"
+msgstr ""
+
+#: pntemplates/faq_admin_modifyconfig.htm:21
+msgid "PermaLinks"
+msgstr ""
+
+#: pntemplates/faq_admin_modifyconfig.htm:23
+msgid "Add category title to PermaLink"
+msgstr ""
+
+#: pntemplates/faq_admin_modifyconfig.htm:29
+msgid "Update Configuration"
+msgstr ""
+
+#: pntemplates/faq_admin_modifyconfig.htm:30
+#: pntemplates/faq_admin_delete.htm:17 pntemplates/faq_admin_new.htm:39
+#: pntemplates/faq_admin_modify.htm:72
+msgid "Cancel"
+msgstr ""
+
+#: pntemplates/faq_user_ask.htm:3 pntemplates/faq_user_ask.htm:18
+#: pntemplates/faq_user_menu.htm:6
+msgid "Submit a question"
+msgstr ""
+
+#: pntemplates/faq_user_ask.htm:7
+msgid ""
+"Before submitting a question please check existing FAQ's as your question "
+"may have already been answered. If not then please submit your question via "
+"the form and below. Please use clear and precise language when submitting a "
+"question. After submission your question will be reviewed by the site editor"
+"(s)."
+msgstr ""
+
+#: pntemplates/faq_user_ask.htm:10
+msgid "Your name"
+msgstr ""
+
+#: pntemplates/faq_admin_view.htm:11 pntemplates/faq_admin_view.htm:46
+#: pntemplates/faq_admin_new.htm:25 pntemplates/faq_admin_modify.htm:29
+msgid "Category"
+msgstr ""
+
+#: pntemplates/faq_admin_view.htm:34
+msgid "Filter"
+msgstr ""
+
+#: pntemplates/faq_admin_view.htm:35
+msgid "Reset"
+msgstr ""
+
+#: pntemplates/faq_admin_view.htm:42
+msgid "Internal ID"
+msgstr ""
+
+#: pntemplates/faq_admin_view.htm:44
+msgid "Answered"
+msgstr ""
+
+#: pntemplates/faq_admin_view.htm:48
+msgid "Options"
+msgstr ""
+
+#: pntemplates/faq_admin_view.htm:58
+msgid "Yes"
+msgstr ""
+
+#: pntemplates/faq_admin_view.htm:60
+msgid "No"
+msgstr ""
+
+#: pntemplates/faq_admin_view.htm:75
+msgid "No items found."
+msgstr ""
+
+#: pntemplates/faq_user_main.htm:4
+msgid "Categories"
+msgstr ""
+
+#: pntemplates/faq_admin_delete.htm:3
+msgid "Delete FAQ"
+msgstr ""
+
+#: pntemplates/faq_admin_delete.htm:13
+msgid "Do you really want to delete this FAQ?"
+msgstr ""
+
+#: pntemplates/faq_admin_delete.htm:16
+msgid "Confirm deletion?"
+msgstr ""
+
+#: pntemplates/faq_user_display.htm:12 pntemplates/faq_admin_modify.htm:54
+#, php-format
+msgid "Submitted by %s"
+msgstr ""
+
+#: pntemplates/faq_user_display.htm:16
+#, php-format
+msgid "Submitted by %s "
+msgstr ""
+
+#: pntemplates/faq_user_display.htm:21 pntemplates/faq_admin_modify.htm:58
+#, php-format
+msgid "Answered by %s"
+msgstr ""
+
+#: pntemplates/faq_admin_new.htm:15 pntemplates/faq_admin_modify.htm:19
+msgid "PermaLink URL title"
+msgstr ""
+
+#: pntemplates/faq_admin_new.htm:17 pntemplates/faq_admin_modify.htm:21
+msgid "(Blank = auto-generate)"
+msgstr ""
+
+#: pntemplates/faq_admin_new.htm:38
+msgid "Create"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:3
+msgid "Update FAQ"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:13
+msgid "Content"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:48
+msgid "Meta data"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:71
+msgid "Update"
+msgstr ""

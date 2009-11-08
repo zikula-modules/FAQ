@@ -20,6 +20,7 @@
  */
 function FAQ_userapi_getall($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // Optional arguments.
     if (!isset($args['startnum']) || !is_numeric($args['startnum'])) {
         $args['startnum'] = 1;
@@ -41,7 +42,7 @@ function FAQ_userapi_getall($args)
 
     $args['catFilter'] = array();
     if (isset($args['category']) && !empty($args['category'])){
-        if (is_array($args['category'])) { 
+        if (is_array($args['category'])) {
             $args['catFilter'] = $args['category'];
         } elseif (isset($args['property'])) {
             $property = $args['property'];
@@ -70,18 +71,18 @@ function FAQ_userapi_getall($args)
     // Check for an error with the database code, and if so set an appropriate
     // error message and return
     if ($objArray === false) {
-        return LogUtil::registerError (_GETFAILED);
+        return LogUtil::registerError (__('Error! Could not load items.', $dom));
     }
 
     // need to do this here as the category expansion code can't know the
     // root category which we need to build the relative path component
     if ($objArray && isset($args['catregistry']) && $args['catregistry']) {
         if (!($class = Loader::loadClass ('CategoryUtil'))) {
-            pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryRegistryUtil')));
+            pn_exit (__f('Error! Unable to load class [%s%]', 'CategoryRegistryUtil', $dom));
         }
         ObjectUtil::postProcessExpandedObjectArrayCategories ($objArray, $args['catregistry']);
     }
-    
+
     // Return the items
     return $objArray;
 }
@@ -95,12 +96,13 @@ function FAQ_userapi_getall($args)
  */
 function FAQ_userapi_get($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     if (isset($args['objectid']) && is_numeric($args['objectid'])) {
         $args['faqid'] = $args['objectid'];
     }
     if ((!isset($args['faqid']) || !is_numeric($args['faqid'])) &&
          !isset($args['title'])) {
-        return LogUtil::registerError (_MODARGSERROR);
+        return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     // define the permission filter to apply
@@ -126,7 +128,7 @@ function FAQ_userapi_countitems($args)
 {
     $args['catFilter'] = array();
     if (isset($args['category']) && !empty($args['category'])){
-        if (is_array($args['category'])) { 
+        if (is_array($args['category'])) {
             $args['catFilter'] = $args['category'];
         } elseif (isset($args['property'])) {
             $property = $args['property'];
@@ -147,9 +149,10 @@ function FAQ_userapi_countitems($args)
  */
 function FAQ_userapi_encodeurl($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // check we have the required input
     if (!isset($args['modname']) || !isset($args['func']) || !isset($args['args'])) {
-        return LogUtil::registerError (_MODARGSERROR);
+        return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     if (!isset($args['type'])) {
@@ -182,7 +185,7 @@ function FAQ_userapi_encodeurl($args)
         $item = pnModAPIFunc('FAQ', 'user', 'get', array('faqid' => $args['args']['faqid']));
         if (pnModGetVar('FAQ', 'addcategorytitletopermalink') && isset($args['args']['cat'])) {
             $vars = $args['args']['cat'].'/'.$item['urltitle'];
-        } else { 
+        } else {
             $vars = $item['urltitle'];
         }
     }
@@ -212,9 +215,10 @@ function FAQ_userapi_encodeurl($args)
  */
 function FAQ_userapi_decodeurl($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // check we actually have some vars to work with...
     if (!isset($args['vars'])) {
-        return LogUtil::registerError (_MODARGSERROR);
+        return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
     }
 
     // define the available user functions

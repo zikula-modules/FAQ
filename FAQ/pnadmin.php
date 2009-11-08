@@ -38,9 +38,10 @@ function FAQ_admin_main()
  */
 function FAQ_admin_new()
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // Security check
     if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_ADD)) {
-        return LogUtil::registerError(_MODULENOAUTH, 403);
+        return LogUtil::registerError(__('Sorry! No authorization to access this module.', $dom), 403);
     }
 
     // Get the module vars
@@ -52,7 +53,7 @@ function FAQ_admin_new()
     if ($modvars['enablecategorization']) {
         // load the categories system
         if (!($class = Loader::loadClass('CategoryRegistryUtil'))) {
-            pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryRegistryUtil')));
+            pn_exit (__f('Error! Unable to load class [%s%]', 'CategoryRegistryUtil', $dom));
         }
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories ('FAQ', 'faqanswer');
 
@@ -75,6 +76,7 @@ function FAQ_admin_new()
  */
 function FAQ_admin_create($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // Get parameters from whatever input we need
     $faq = FormUtil::getPassedValue('faq', isset($args['faq']) ? $args['faq'] : null, 'POST');
 
@@ -88,7 +90,7 @@ function FAQ_admin_create($args)
 
     if ($faqid != false) {
         // Success
-        LogUtil::registerStatus (_CREATESUCCEDED);
+        LogUtil::registerStatus (__('Done! Item created.', $dom));
     }
 
     return pnRedirect(pnModURL('FAQ', 'admin', 'view'));
@@ -103,6 +105,7 @@ function FAQ_admin_create($args)
  */
 function FAQ_admin_modify($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     $faqid = FormUtil::getPassedValue('faqid', isset($args['faqid']) ? $args['faqid'] : null, 'GET');
     $objectid = FormUtil::getPassedValue('objectid', isset($args['objectid']) ? $args['objectid'] : null, 'GET');
 
@@ -112,7 +115,7 @@ function FAQ_admin_modify($args)
 
     $item = pnModAPIFunc('FAQ', 'user', 'get', array('faqid' => $faqid));
     if (!$item) {
-        return LogUtil::registerError (_NOSUCHITEM, 404);
+        return LogUtil::registerError (__('No such item found.', $dom), 404);
     }
 
     // Security check
@@ -128,7 +131,7 @@ function FAQ_admin_modify($args)
 
     // load the categories system
     if (!($class = Loader::loadClass('CategoryRegistryUtil'))) {
-        pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryRegistryUtil')));
+        pn_exit (__f('Error! Unable to load class [%s%]', 'CategoryRegistryUtil', $dom));
     }
 
     $categories = CategoryRegistryUtil::getRegisteredModuleCategories ('FAQ', 'faqanswer');
@@ -150,6 +153,7 @@ function FAQ_admin_modify($args)
  */
 function FAQ_admin_update($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     $faq = FormUtil::getPassedValue('faq', isset($args['faq']) ? $args['faq'] : null, 'POST');
     if (!empty($faq['objectid'])) {
         $faq['faqid'] = $faq['objectid'];
@@ -163,7 +167,7 @@ function FAQ_admin_update($args)
     // Update FAQ
     if (pnModAPIFunc('FAQ', 'admin', 'update', $faq)) {
         // Success
-        LogUtil::registerStatus (_UPDATESUCCEDED);
+        LogUtil::registerStatus (__('Done! Item updated.', $dom));
     }
 
     return pnRedirect(pnModURL('FAQ', 'admin', 'view'));
@@ -178,6 +182,7 @@ function FAQ_admin_update($args)
  */
 function FAQ_admin_delete($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     $faqid = FormUtil::getPassedValue('faqid', isset($args['faqid']) ? $args['faqid'] : null, 'REQUEST');
     $objectid = FormUtil::getPassedValue('objectid', isset($args['objectid']) ? $args['objectid'] : null, 'REQUEST');
     $confirmation = FormUtil::getPassedValue('confirmation', null, 'POST');
@@ -189,7 +194,7 @@ function FAQ_admin_delete($args)
     $item = pnModAPIFunc('FAQ', 'user', 'get', array('faqid' => $faqid));
 
     if (!$item) {
-        return LogUtil::registerError (_NOSUCHITEM, 404);
+        return LogUtil::registerError (__('No such item found.', $dom), 404);
     }
 
     // Security check
@@ -221,7 +226,7 @@ function FAQ_admin_delete($args)
     // delete the faq
     if (pnModAPIFunc('FAQ', 'admin', 'delete', array('faqid' => $faqid))) {
         // Success
-        LogUtil::registerStatus (_DELETESUCCEDED);
+        LogUtil::registerStatus (__('Done! Item deleted.', $dom));
     }
 
     return pnRedirect(pnModURL('FAQ', 'admin', 'view'));
@@ -239,6 +244,7 @@ function FAQ_admin_delete($args)
  */
 function FAQ_admin_view($args)
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // Security check
     if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_EDIT)) {
         return LogUtil::registerPermissionError();
@@ -252,9 +258,9 @@ function FAQ_admin_view($args)
 
     if ($purge) {
         if (pnModAPIFunc('FAQ', 'admin', 'purgepermalinks')) {
-            LogUtil::registerStatus(_PURGEPERMALINKSSUCCESFUL);
+            LogUtil::registerStatus(__('Purging of the pemalinks was successful', $dom));
         } else {
-            LogUtil::registerError(_PURGEPERMALINKSFAILED);
+            LogUtil::registerError(__('Purging of the pemalinks has failed', $dom));
         }
         return pnRedirect(strpos(pnServerGetVar('HTTP_REFERER'), 'purge') ? pnModURL('FAQ', 'admin', 'view') : pnServerGetVar('HTTP_REFERER'));
     }
@@ -269,7 +275,7 @@ function FAQ_admin_view($args)
     if ($modvars['enablecategorization']) {
         // load the category registry util
         if (!($class = Loader::loadClass('CategoryRegistryUtil'))) {
-            pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryRegistryUtil')));
+            pn_exit (__f('Error! Unable to load class [%s%]', 'CategoryRegistryUtil', $dom));
         }
         $catregistry  = CategoryRegistryUtil::getRegisteredModuleCategories('FAQ', 'faqanswer');
         $properties = array_keys($catregistry);
@@ -292,8 +298,8 @@ function FAQ_admin_view($args)
     }
 
     // get all faq's
-    $items = pnModAPIFunc('FAQ', 'user', 'getall', 
-                          array('startnum' => $startnum, 
+    $items = pnModAPIFunc('FAQ', 'user', 'getall',
+                          array('startnum' => $startnum,
                                 'numitems' => $modvars['itemsperpage'],
                                 'category' => isset($catFilter) ? $catFilter : null,
                                 'catregistry'  => isset($catregistry) ? $catregistry : null));
@@ -303,11 +309,11 @@ function FAQ_admin_view($args)
         if (SecurityUtil::checkPermission( 'FAQ::', "$item[faqid]::", ACCESS_EDIT)) {
             $options[] = array('url'   => pnModURL('FAQ', 'admin', 'modify', array('faqid' => $item['faqid'])),
                                'image' => 'xedit.gif',
-                               'title' => _EDIT);
+                               'title' => __('Edit', $dom));
             if (SecurityUtil::checkPermission( 'FAQ::', "$item[faqid]::", ACCESS_DELETE)) {
                 $options[] = array('url'   => pnModURL('FAQ', 'admin', 'delete', array('faqid' => $item['faqid'])),
                                    'image' => '14_layer_deletelayer.gif',
-                                   'title' => _DELETE);
+                                   'title' => __('Delete', $dom));
             }
         }
 
@@ -380,6 +386,7 @@ function FAQ_admin_modifyconfig()
  */
 function FAQ_admin_updateconfig()
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // Security check
     if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
@@ -406,7 +413,7 @@ function FAQ_admin_updateconfig()
     pnModCallHooks('module','updateconfig','FAQ', array('module' => 'FAQ'));
 
     // the module configuration has been updated successfuly
-    LogUtil::registerStatus (_CONFIGUPDATED);
+    LogUtil::registerStatus (__('Done! Module configuration updated.', $dom));
 
     return pnRedirect(pnModURL('FAQ', 'admin', 'view'));
 }

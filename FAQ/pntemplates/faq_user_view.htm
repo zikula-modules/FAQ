@@ -10,20 +10,20 @@
 
 <!--[else]-->
 
-	<h2><!--[pnml name=_FAQ_RECENTFAQS]--></h2>
+	<h2><!--[gt text="Recent FAQs"]--></h2>
 
 <!--[/if]-->
 
 <!--[pnmodurl modname=FAQ func=view prop=$property startnum=$startnum assign=returnurl]-->
 
-<h3><!--[pnml name="_FAQ_QUESTION"]--></h3>
+<h3><!--[gt text="Question"]--></h3>
 <ul>
 	<!--[foreach item=item from=$faqs]-->
 	<li><a href="#faq<!--[$item.faqid]-->"><em><!--[$item.question]--></em></a></li>
 	<!--[/foreach]-->
 </ul>
 
-<h3><!--[pnml name="_FAQ_ANSWER"]--></h3>
+<h3><!--[gt text="Answer"]--></h3>
 <!--[foreach item=item from=$items]-->
 <!--[$item]-->
 <!--[/foreach]-->

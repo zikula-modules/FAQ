@@ -1,33 +1,33 @@
 <!--[*  $Id$  *]-->
 <!--[include file="faq_admin_menu.htm"]-->
-<!--[pnml name="_FAQ_MODIFY" assign=templatetitle]-->
+<!--[gt text="Update FAQ" assign=templatetitle]-->
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname=core src=edit.gif set=icons/large alt=$templatetitle]--></div>
-<h2><!--[pnml name=$templatetitle]--></h2>
+<div class="pn-adminpageicon"><!--[pnimg modname='core' src='edit.gif' set='icons/large' __alt=$templatetitle]--></div>
+<h2><!--[$templatetitle]--></h2>
 <form id="faq_admin_modifyform" class="pn-form" action="<!--[pnmodurl modname="FAQ" type="admin" func="update"]-->" method="post" enctype="application/x-www-form-urlencoded">
 <div>
 	<input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module="FAQ"]-->" />
 	<input type="hidden" name="faq[faqid]" value="<!--[$faqid|pnvarprepfordisplay]-->" />
 	<input type="hidden" name="faq[submittedbyid]" value="<!--[$submittedbyid|pnvarprepfordisplay]-->" />
 	<fieldset class="pn-form-fieldset">
-		<legend><!--[pnml name=_CONTENT]--></legend>
+		<legend><!--[gt text="Content"]--></legend>
 		<div class="pn-formrow">
-			<label for="faq_question"><!--[pnml name="_FAQ_QUESTION"]--></label>
+			<label for="faq_question"><!--[gt text="Question"]--></label>
 			<textarea id="faq_question" class="pn-form-text" name="faq[question]" rows="10" cols="50"><!--[$question|pnvarprepfordisplay]--></textarea>
 		</div>
 		<div class="pn-formrow">
-			<label for="faq_urltitle"><!--[pnml name="_PERMALINKTITLE"]--></label>
+			<label for="faq_urltitle"><!--[gt text="PermaLink URL title"]--></label>
 			<input id="faq_urltitle" class="pn-form-text" name="faq[urltitle]" type="text" size="32" maxlength="255" value="<!--[$urltitle|pnvarprepfordisplay]-->" />
-			<span class="pn-sub"><!--[pnml name=_PERMALINKTITLEBLANK]--></span>
+			<span class="pn-sub"><!--[gt text="(Blank = auto-generate)"]--></span>
 		</div>
 		<div class="pn-formrow">
-			<label for="faqanswer"><!--[pnml name="_FAQ_ANSWER"]--></label>
+			<label for="faqanswer"><!--[gt text="Answer"]--></label>
 			<textarea id="faqanswer" class="pn-form-text" name="faq[answer]" rows="10" cols="50"><!--[$answer|pnvarprepfordisplay]--></textarea>
 		</div>
 		<!--[if $enablecategorization]-->
 		<div class="pn-formrow">
-			<label for="faq_categories"><!--[pnml name="_CATEGORY"]--></label>
-			<!--[pnml assign="lblDef" name="_CHOOSECATEGORY"]-->
+			<label for="faq_categories"><!--[gt text="Category"]--></label>
+			<!--[pnml assign="lblDef" name="Choose Category"]-->
 			<!--[nocache]-->
 			<ul id="faq_categories" class="selector_category">
 			<!--[foreach from=$categories key=property item=category]-->
@@ -45,31 +45,31 @@
 		<!--[/if]-->
 	</fieldset>
 	<fieldset class="pn-form-fieldset">
-		<legend><!--[pnml name=_META]--></legend>
+		<legend><!--[gt text="Meta data"]--></legend>
 		<ul>
 			<!--[if $submittedbyid neq 0]-->
 				<!--[pnusergetvar name=uname uid=$submittedbyid assign=submittedby]-->
 			<!--[/if]-->
-			<!--[ capture assign=faqsubmittedby]--><a href="<!--[pnmodurl modname=Profile func=view uname=$submittedby]-->"><!--[$submittedby|pnvarprepfordisplay]--></a><!--[ /capture ]-->
-			<li><!--[pnml name="_FAQ_SUBMITTEDBY" username=$faqsubmittedby html=1]--></li>
+			<!--[capture assign=faqsubmittedby]--><a href="<!--[pnmodurl modname=Profile func=view uname=$submittedby]-->"><!--[$submittedby|pnvarprepfordisplay]--></a><!--[/capture]-->
+			<li><!--[gt text="Submitted by %s" username=$faqsubmittedby]--></li>
 
 			<!--[pnusergetvar name=uname uid=$answeredbyid assign=uname]-->
-			<!--[ capture assign=faqansweredby]--><a href="<!--[pnmodurl modname=Profile func=view uname=$uname]-->"><!--[$uname|pnvarprepfordisplay]--></a><!--[ /capture ]-->
-			<li><!--[pnml name="_FAQ_ANSWEREDBY" username=$faqansweredby html=1]--></li>
+			<!--[capture assign=faqansweredby]--><a href="<!--[pnmodurl modname=Profile func=view uname=$uname]-->"><!--[$uname|pnvarprepfordisplay]--></a><!--[/capture]-->
+			<li><!--[gt text="Answered by %s" username=$faqansweredby]--></li>
 			
 			<!--[pnusergetvar name=uname uid=$cr_uid assign=uname]-->
-			<!--[ capture assign=faqcreatedby]--><a href="<!--[pnmodurl modname=Profile func=view uname=$uname]-->"><!--[$uname|pnvarprepfordisplay]--></a><!--[ /capture ]-->
-			<li><!--[pnml name=_FAQ_CREATEDBYON username=$faqcreatedby date=$cr_date|pndate_format:'datetimelong' html=1]--></li>
+			<!--[capture assign=faqcreatedby]--><a href="<!--[pnmodurl modname=Profile func=view uname=$uname]-->"><!--[$uname|pnvarprepfordisplay]--></a><!--[/capture]-->
+			<li><!--[gt text="Created by %1$s on %2$s" tag1=$faqcreatedby tag2=$cr_date|pndate_format:'datetimelong']--></li>
 
 			<!--[pnusergetvar name=uname uid=$lu_uid assign=uname]-->
-			<!--[ capture assign=faqupdatedby]--><a href="<!--[pnmodurl modname=Profile func=view uname=$uname]-->"><!--[$uname|pnvarprepfordisplay]--></a><!--[ /capture ]-->
-			<li><!--[pnml name=_FAQ_UPDATEDBYON username=$faqupdatedby date=$lu_date|pndate_format:'datetimelong' html=1]--></li>
+			<!--[capture assign=faqupdatedby]--><a href="<!--[pnmodurl modname=Profile func=view uname=$uname]-->"><!--[$uname|pnvarprepfordisplay]--></a><!--[/capture]-->
+			<li><!--[gt text="Updated by %1$s on %2$s" tag1=$faqupdatedby tag2=$lu_date|pndate_format:'datetimelong']--></li>
 		</ul>
 	</fieldset>
 	<!--[pnmodcallhooks hookobject=item hookaction=modify hookid=$faqid module=FAQ]-->
 	<div class="pn-formrow pn-formbuttons">
-	<!--[pnbutton src=button_ok.gif set=icons/small alt="_UPDATE" title="_UPDATE"]-->
-	<a href="<!--[pnmodurl modname=FAQ type=admin func=view]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
+	<!--[pnbutton src='button_ok.gif' set='icons/small' __alt="Update" __title="Update"]-->
+	<a href="<!--[pnmodurl modname=FAQ type=admin func=view]-->"><!--[pnimg modname='core' src='button_cancel.gif' set='icons/small'   __alt="Cancel" __title="Cancel"]--></a>
 	</div>
 </div>
 </form>

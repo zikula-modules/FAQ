@@ -1,29 +1,29 @@
 <!--[*  $Id$  *]-->
 <!--[include file="faq_admin_menu.htm"]-->
-<!--[pnml name="_FAQ_CREATE" assign=templatetitle]-->
+<!--[gt text="Create a FAQ" assign=templatetitle]-->
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname=core src=filenew.gif set=icons/large alt=$templatetitle]--></div>
-<h2><!--[pnml name=$templatetitle]--></h2>
+<div class="pn-adminpageicon"><!--[pnimg modname='core' src='filenew.gif' set='icons/large' __alt=$templatetitle]--></div>
+<h2><!--[gt text="$templatetitle"]--></h2>
 <form id="faq_admin_newform" class="pn-form" action="<!--[pnmodurl modname="FAQ" type="admin" func="create"]-->" method="post" enctype="application/x-www-form-urlencoded">
 <div>
 	<input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module="FAQ"]-->" />
 	<div class="pn-formrow">
-		<label for="faq_question"><!--[pnml name="_FAQ_QUESTION"]--></label>
+		<label for="faq_question"><!--[gt text="Question"]--></label>
 		<textarea id="faq_question" class="pn-form-text" name="faq[question]" rows="10" cols="50"></textarea>
 	</div>
     <div class="pn-formrow">
-        <label for="faq_urltitle"><!--[pnml name="_PERMALINKTITLE"]--></label>
+        <label for="faq_urltitle"><!--[gt text="PermaLink URL title"]--></label>
         <input id="faq_urltitle" class="pn-form-text" name="faq[urltitle]" type="text" size="32" maxlength="255" />
-		<span class="pn-sub"><!--[pnml name=_PERMALINKTITLEBLANK]--></span>
+		<span class="pn-sub"><!--[gt text="(Blank = auto-generate)"]--></span>
     </div>
 	<div class="pn-formrow">
-		<label for="faqanswer"><!--[pnml name="_FAQ_ANSWER"]--></label>
+		<label for="faqanswer"><!--[gt text="Answer"]--></label>
 		<textarea id="faqanswer" class="pn-form-text" name="faq[answer]" rows="10" cols="50"></textarea>
 	</div>
 	<!--[if $enablecategorization]-->
 	<div class="pn-formrow">
-		<label for="faq_categories"><!--[pnml name="_CATEGORY"]--></label>
-		<!--[pnml assign="lblDef" name="_CHOOSECATEGORY"]-->
+		<label for="faq_categories"><!--[gt text="Category"]--></label>
+		<!--[pnml assign="lblDef" name="Choose Category"]-->
 		<!--[nocache]-->
 		<ul id="faq_categories" class="selector_category">
 		<!--[foreach from=$catregistry key=property item=category]-->
@@ -35,8 +35,8 @@
 	<!--[/if]-->
 	<!--[pnmodcallhooks hookobject=item hookaction=new module=FAQ]-->
     <div class="pn-formrow pn-formbuttons">
-    <!--[pnbutton src=button_ok.gif set=icons/small alt="_CREATE" title="_CREATE"]-->
-    <a href="<!--[pnmodurl modname=FAQ type=admin func=view]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
+    <!--[pnbutton src='button_ok.gif' set='icons/small' __alt="Create" __title="Create"]-->
+    <a href="<!--[pnmodurl modname=FAQ type=admin func=view]-->"><!--[pnimg modname='core' src='button_cancel.gif' set='icons/small'   __alt="Cancel" __title="Cancel"]--></a>
     </div>
 </div>
 </form>

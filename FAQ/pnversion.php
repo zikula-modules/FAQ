@@ -10,10 +10,12 @@
  * @subpackage FAQ
  */
 
+$dom = ZLanguage::getModuleDomain('FAQ');
 $modversion['name']           = 'FAQ';
-$modversion['displayname']    = _FAQ_DISPLAYNAME;
-$modversion['description']    = _FAQ_DESCRIPTION;
-$modversion['version']        = '2.2';
+$modversion['displayname']    = __('FAQ', $dom);
+$modversion['url']            = __('faq', $dom);
+$modversion['description']    = __('Frequently Asked Questions', $dom);
+$modversion['version']        = '2.3';
 $modversion['changelog']      = 'pndocs/changelog.txt';
 $modversion['credits']        = 'pndocs/credits.txt';
 $modversion['help']           = 'pndocs/help.txt';

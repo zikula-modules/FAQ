@@ -22,7 +22,7 @@ function FAQ_init()
 
     // create our default category
     if (!_faq_createdefaultcategory()) {
-        return LogUtil::registerError (_CREATEFAILED);
+        return LogUtil::registerError (__('Error! Creation attempt failed.', $dom));
     }
 
     // Set up module variables
@@ -41,36 +41,17 @@ function FAQ_upgrade($oldversion)
 {
     switch($oldversion) {
         // version 1.11 shipped with PN .7x
-        case 1.11:
-            // .7x upgrade needs to rename a row before update the table
-            DBUtil::renameColumn('faqanswer', 'pn_submittedby', 'submittedbyid');
-            // update table
-            if (!DBUtil::changeTable('faqanswer')) {
-                return false;
-            }
-            // Set up module variables
-            pnModSetVar('FAQ', 'itemsperpage', 25);
-            // populate permalinks for existing content
-            $tables = pnDBGetTables();
-            $shorturlsep = pnConfigGetVar('shorturlsseparator');
-            $sqls   = array();
-            $sqls[] = "UPDATE $tables[faqanswer] SET pn_urltitle = REPLACE(pn_question, ' ', '{$shorturlsep}')";
-            $sqls[] = "UPDATE $tables[faqanswer] SET pn_cr_date = '".DateUtil::getDatetime()."'";
-            foreach ($sqls as $sql) {
-                if (!DBUtil::executeSQL($sql)) {
-                    return LogUtil::registerError (_UPDATETABLEFAILED);
-                }
-            }
-            return FAQ_upgrade(2.0);
-        case 2.0:
-        case 2.1:
+        case '2.0':
+        case '2.1':
             pnModSetVar('FAQ', 'enablecategorization', true);
             pnModSetVar('FAQ', 'addcategorytitletopermalink', true);
             pnModDBInfoLoad('FAQ', 'FAQ', true);
             if (!_faq_migratecategories()) {
-                return LogUtil::registerError (_UPDATEFAILED);
+                LogUtil::registerError (__('Error! Update attempt failed.', $dom));
+                return '2.1';
             }
-            break;
+
+        case '2.2':
     }
 
     // upgrade successful
@@ -90,7 +71,7 @@ function FAQ_delete()
     // Delete module variables
     pnModDelVar('FAQ');
 
-    // Delete entries from category registry 
+    // Delete entries from category registry
     pnModDBInfoLoad ('Categories');
     Loader::loadArrayClassFromModule('Categories', 'CategoryRegistry');
     $registry = new PNCategoryRegistryArray();
@@ -176,7 +157,7 @@ function _faq_migratecategories()
     }
     foreach ($pages as $page) {
         if (!DBUtil::updateObject($page, 'faqanswer', '', 'faqid')) {
-            return LogUtil::registerError (_UPDATEFAILED);
+            return LogUtil::registerError (__('Error! Update attempt failed.', $dom));
         }
     }
 
@@ -194,6 +175,7 @@ function _faq_migratecategories()
  */
 function _faq_createdefaultcategory($regpath = '/__SYSTEM__/Modules/Global')
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
     // load necessary classes
     Loader::loadClass('CategoryUtil');
     Loader::loadClassFromModule('Categories', 'Category');
@@ -211,8 +193,8 @@ function _faq_createdefaultcategory($regpath = '/__SYSTEM__/Modules/Global')
         $cat = new PNCategory ();
         $cat->setDataField('parent_id', $rootcat['id']);
         $cat->setDataField('name', 'FAQ');
-        $cat->setDataField('display_name', array($lang => _FAQ_DISPLAYNAME));
-        $cat->setDataField('display_desc', array($lang => _FAQ_DESCRIPTION));
+        $cat->setDataField('display_name', array($lang => __('FAQ', $dom)));
+        $cat->setDataField('display_desc', array($lang => __('Frequently Asked Questions', $dom)));
         if (!$cat->validate('admin')) {
             return false;
         }
