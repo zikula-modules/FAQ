@@ -25,7 +25,7 @@
                 <!--[if $enablecategorization]-->
                 <div class="z-formrow">
                     <label><!--[gt text="Category"]--></label>
-                    <!--[pnml assign="lblDef" name="Choose Category"]-->
+                    <!--[gt text='Choose a category' assign='lblDef']-->
                     <!--[nocache]-->
                     <!--[foreach from=$catregistry key=property item=category]-->
                     <div class="z-formnote"><!--[selector_category category=$category name="faq[__CATEGORIES__][$property]" field="id" selectedValue="0" defaultValue="0" defaultText=$lblDef]--></div>

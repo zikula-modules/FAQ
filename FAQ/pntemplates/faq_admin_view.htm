@@ -9,7 +9,7 @@
     <form action="<!--[pnmodurl modname=FAQ type=admin func=view]-->" method="post" enctype="application/x-www-form-urlencoded">
         <div id="faq_multicategory_filter">
             <label for="faq_property"><!--[gt text="Category"]--></label>
-            <!--[pnml assign="lblDef" name="Choose One"]-->
+            <!--[gt text='Choose a category' assign='lblDef']-->
             <!--[nocache]-->
             <!--[if $numproperties gt 1]-->
             <!--[html_options id="faq_property" name="faq_property" options=$properties selected=$property]-->

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-09 12:49+0000\n"
+"POT-Creation-Date: 2009-11-09 14:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,6 +157,11 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
+#: pntemplates/faq_admin_modify.htm:30 pntemplates/faq_admin_new.htm:28
+#: pntemplates/faq_admin_view.htm:12
+msgid "Choose a category"
+msgstr ""
+
 #: pntemplates/faq_admin_modify.htm:46
 msgid "Meta data"
 msgstr ""
@@ -192,7 +197,7 @@ msgid "Cancel"
 msgstr ""
 
 #: pntemplates/faq_user_menu.htm:8 pntemplates/faq_user_ask.htm:3
-#: pntemplates/faq_user_ask.htm:9 pntemplates/faq_user_ask.htm:22
+#: pntemplates/faq_user_ask.htm:9
 msgid "Submit a question"
 msgstr ""
 
@@ -255,6 +260,10 @@ msgstr ""
 
 #: pntemplates/faq_user_ask.htm:17
 msgid "Content"
+msgstr ""
+
+#: pntemplates/faq_user_ask.htm:22
+msgid "Submit"
 msgstr ""
 
 #: pntemplates/faq_admin_delete.htm:2
