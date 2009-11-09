@@ -41,7 +41,7 @@ function FAQ_admin_new()
     $dom = ZLanguage::getModuleDomain('FAQ');
     // Security check
     if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_ADD)) {
-        return LogUtil::registerError(__('Sorry! No authorization to access this module.', $dom), 403);
+        return LogUtil::registerPermissionError();
     }
 
     // Get the module vars
