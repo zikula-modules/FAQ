@@ -6,19 +6,15 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Zikula component\n"
+"Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-07 11:03-0500\n"
+"POT-Creation-Date: 2009-11-09 12:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: pnadmin.php:44 pnadminapi.php:179
-msgid "Sorry! No authorization to access this module."
-msgstr ""
 
 #: pnadmin.php:56 pnadmin.php:134 pnadmin.php:278 pnuserapi.php:81
 #: pnuser.php:39 pnuser.php:96
@@ -61,7 +57,19 @@ msgstr ""
 msgid "Done! Module configuration updated."
 msgstr ""
 
-#: pnuserapi.php:74 pnsearchapi.php:65 pnsearchapi.php:96
+#: pnversion.php:15 pninit.php:196
+msgid "FAQ"
+msgstr ""
+
+#: pnversion.php:16
+msgid "faq"
+msgstr ""
+
+#: pnversion.php:17 pninit.php:197
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: pnsearchapi.php:65 pnsearchapi.php:96 pnuserapi.php:74
 msgid "Error! Could not load items."
 msgstr ""
 
@@ -82,18 +90,6 @@ msgstr ""
 msgid "Thank you for your question"
 msgstr ""
 
-#: pnversion.php:15 pninit.php:196
-msgid "FAQ"
-msgstr ""
-
-#: pnversion.php:16
-msgid "faq"
-msgstr ""
-
-#: pnversion.php:17 pninit.php:197
-msgid "Frequently Asked Questions"
-msgstr ""
-
 #: pnadminapi.php:58 pninit.php:25
 msgid "Error! Creation attempt failed."
 msgstr ""
@@ -106,8 +102,12 @@ msgstr ""
 msgid "Error! Update attempt failed."
 msgstr ""
 
-#: pnadminapi.php:231 pntemplates/faq_admin_view.htm:4
-#: pntemplates/faq_user_menu.htm:5
+#: pnadminapi.php:179
+msgid "Sorry! No authorization to access this module."
+msgstr ""
+
+#: pnadminapi.php:231 pntemplates/faq_user_menu.htm:7
+#: pntemplates/faq_admin_view.htm:4
 msgid "View FAQ list"
 msgstr ""
 
@@ -129,72 +129,79 @@ msgstr ""
 msgid "FAQs"
 msgstr ""
 
+#: pntemplates/faq_admin_modify.htm:3
+msgid "Update FAQ"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:15 pntemplates/faq_user_view.htm:19
+#: pntemplates/faq_admin_new.htm:13 pntemplates/faq_admin_view.htm:43
+#: pntemplates/faq_user_display.htm:4
+msgid "Question"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:19 pntemplates/faq_admin_new.htm:17
+msgid "PermaLink URL title"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:21 pntemplates/faq_admin_new.htm:19
+msgid "(Blank = auto-generate)"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:24 pntemplates/faq_user_view.htm:26
+#: pntemplates/faq_admin_new.htm:22 pntemplates/faq_user_display.htm:7
+msgid "Answer"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:29 pntemplates/faq_admin_new.htm:27
+#: pntemplates/faq_admin_view.htm:11 pntemplates/faq_admin_view.htm:46
+msgid "Category"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:46
+msgid "Meta data"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:52 pntemplates/faq_user_display.htm:12
+#, php-format
+msgid "Submitted by %s"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:56 pntemplates/faq_user_display.htm:21
+#, php-format
+msgid "Answered by %s"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:60
+#, php-format
+msgid "Created by %1$s on %2$s"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:64
+#, php-format
+msgid "Updated by %1$s on %2$s"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:69
+msgid "Update"
+msgstr ""
+
+#: pntemplates/faq_admin_modify.htm:70 pntemplates/faq_admin_new.htm:40
+#: pntemplates/faq_admin_delete.htm:17
+#: pntemplates/faq_admin_modifyconfig.htm:30
+msgid "Cancel"
+msgstr ""
+
+#: pntemplates/faq_user_menu.htm:8 pntemplates/faq_user_ask.htm:3
+#: pntemplates/faq_user_ask.htm:9 pntemplates/faq_user_ask.htm:22
+msgid "Submit a question"
+msgstr ""
+
 #: pntemplates/faq_user_view.htm:13
 msgid "Recent FAQs"
 msgstr ""
 
-#: pntemplates/faq_user_view.htm:19 pntemplates/faq_admin_view.htm:43
-#: pntemplates/faq_user_display.htm:4 pntemplates/faq_admin_new.htm:11
-#: pntemplates/faq_admin_modify.htm:15
-msgid "Question"
-msgstr ""
-
-#: pntemplates/faq_user_view.htm:26 pntemplates/faq_user_display.htm:7
-#: pntemplates/faq_admin_new.htm:20 pntemplates/faq_admin_modify.htm:24
-msgid "Answer"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:10
-msgid "General settings"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:12
-msgid "Enable categorization"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:16
-msgid "Items per page"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:21
-msgid "PermaLinks"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:23
-msgid "Add category title to PermaLink"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:29
-msgid "Update Configuration"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:30
-#: pntemplates/faq_admin_delete.htm:17 pntemplates/faq_admin_new.htm:39
-#: pntemplates/faq_admin_modify.htm:72
-msgid "Cancel"
-msgstr ""
-
-#: pntemplates/faq_user_ask.htm:3 pntemplates/faq_user_ask.htm:18
-#: pntemplates/faq_user_menu.htm:6
-msgid "Submit a question"
-msgstr ""
-
-#: pntemplates/faq_user_ask.htm:7
-msgid ""
-"Before submitting a question please check existing FAQ's as your question "
-"may have already been answered. If not then please submit your question via "
-"the form and below. Please use clear and precise language when submitting a "
-"question. After submission your question will be reviewed by the site editor"
-"(s)."
-msgstr ""
-
-#: pntemplates/faq_user_ask.htm:10
-msgid "Your name"
-msgstr ""
-
-#: pntemplates/faq_admin_view.htm:11 pntemplates/faq_admin_view.htm:46
-#: pntemplates/faq_admin_new.htm:25 pntemplates/faq_admin_modify.htm:29
-msgid "Category"
+#: pntemplates/faq_admin_new.htm:39
+msgid "Create"
 msgstr ""
 
 #: pntemplates/faq_admin_view.htm:34
@@ -233,21 +240,37 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: pntemplates/faq_admin_delete.htm:3
+#: pntemplates/faq_user_ask.htm:4
+msgid ""
+"Before submitting a question please check existing FAQ's as your question "
+"may have already been answered. If not then please submit your question via "
+"the form and below. Please use clear and precise language when submitting a "
+"question. After submission your question will be reviewed by the site editor"
+"(s)."
+msgstr ""
+
+#: pntemplates/faq_user_ask.htm:12
+msgid "Your name"
+msgstr ""
+
+#: pntemplates/faq_user_ask.htm:17
+msgid "Content"
+msgstr ""
+
+#: pntemplates/faq_admin_delete.htm:2
 msgid "Delete FAQ"
 msgstr ""
 
-#: pntemplates/faq_admin_delete.htm:13
+#: pntemplates/faq_admin_delete.htm:7
 msgid "Do you really want to delete this FAQ?"
+msgstr ""
+
+#: pntemplates/faq_admin_delete.htm:14
+msgid "Confirmation prompt"
 msgstr ""
 
 #: pntemplates/faq_admin_delete.htm:16
 msgid "Confirm deletion?"
-msgstr ""
-
-#: pntemplates/faq_user_display.htm:12 pntemplates/faq_admin_modify.htm:54
-#, php-format
-msgid "Submitted by %s"
 msgstr ""
 
 #: pntemplates/faq_user_display.htm:16
@@ -255,35 +278,26 @@ msgstr ""
 msgid "Submitted by %s "
 msgstr ""
 
-#: pntemplates/faq_user_display.htm:21 pntemplates/faq_admin_modify.htm:58
-#, php-format
-msgid "Answered by %s"
+#: pntemplates/faq_admin_modifyconfig.htm:10
+msgid "General settings"
 msgstr ""
 
-#: pntemplates/faq_admin_new.htm:15 pntemplates/faq_admin_modify.htm:19
-msgid "PermaLink URL title"
+#: pntemplates/faq_admin_modifyconfig.htm:12
+msgid "Enable categorization"
 msgstr ""
 
-#: pntemplates/faq_admin_new.htm:17 pntemplates/faq_admin_modify.htm:21
-msgid "(Blank = auto-generate)"
+#: pntemplates/faq_admin_modifyconfig.htm:16
+msgid "Items per page"
 msgstr ""
 
-#: pntemplates/faq_admin_new.htm:38
-msgid "Create"
+#: pntemplates/faq_admin_modifyconfig.htm:21
+msgid "PermaLinks"
 msgstr ""
 
-#: pntemplates/faq_admin_modify.htm:3
-msgid "Update FAQ"
+#: pntemplates/faq_admin_modifyconfig.htm:23
+msgid "Add category title to PermaLink"
 msgstr ""
 
-#: pntemplates/faq_admin_modify.htm:13
-msgid "Content"
-msgstr ""
-
-#: pntemplates/faq_admin_modify.htm:48
-msgid "Meta data"
-msgstr ""
-
-#: pntemplates/faq_admin_modify.htm:71
-msgid "Update"
+#: pntemplates/faq_admin_modifyconfig.htm:29
+msgid "Update Configuration"
 msgstr ""
