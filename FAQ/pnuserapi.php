@@ -102,7 +102,7 @@ function FAQ_userapi_get($args)
     }
     if ((!isset($args['faqid']) || !is_numeric($args['faqid'])) &&
          !isset($args['title'])) {
-        return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
+        return LogUtil::registerArgsError();
     }
 
     // define the permission filter to apply
@@ -152,7 +152,7 @@ function FAQ_userapi_encodeurl($args)
     $dom = ZLanguage::getModuleDomain('FAQ');
     // check we have the required input
     if (!isset($args['modname']) || !isset($args['func']) || !isset($args['args'])) {
-        return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
+        return LogUtil::registerArgsError();
     }
 
     if (!isset($args['type'])) {
@@ -218,7 +218,7 @@ function FAQ_userapi_decodeurl($args)
     $dom = ZLanguage::getModuleDomain('FAQ');
     // check we actually have some vars to work with...
     if (!isset($args['vars'])) {
-        return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
+        return LogUtil::registerArgsError();
     }
 
     // define the available user functions

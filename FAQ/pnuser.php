@@ -191,7 +191,7 @@ function FAQ_user_display($args)
 
     // Validate the essential parameters
     if ((empty($faqid) || !is_numeric($faqid)) && (empty($title))) {
-        return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
+        return LogUtil::registerArgsError();
     }
     if (!empty($title)) {
         unset($faqid);

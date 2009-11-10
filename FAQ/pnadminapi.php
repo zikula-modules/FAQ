@@ -26,7 +26,7 @@ function FAQ_adminapi_create($faq)
     // Argument check
     if (!isset($faq['question']) ||
         !isset($faq['answer'])) {
-        return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
+        return LogUtil::registerArgsError();
     }
 
     // optional arguments
@@ -76,7 +76,7 @@ function FAQ_adminapi_delete($args)
     $dom = ZLanguage::getModuleDomain('FAQ');
     // Argument check
     if (!isset($args['faqid']) || !is_numeric($args['faqid'])) {
-        return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
+        return LogUtil::registerArgsError();
     }
 
     // Get the current faq
@@ -123,7 +123,7 @@ function FAQ_adminapi_update($faq)
     if (!isset($faq['question']) ||
         !isset($faq['answer']) ||
         !isset($faq['faqid']) || !is_numeric($faq['faqid'])) {
-        return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
+        return LogUtil::registerArgsError();
     }
 
     // optional arguments
@@ -176,7 +176,7 @@ function FAQ_adminapi_purgepermalinks($args)
     $dom = ZLanguage::getModuleDomain('FAQ');
     // Security check
     if (!SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADMIN)) {
-        return LogUtil::registerError(__('Sorry! No authorization to access this module.', $dom));
+        return LogUtil::registerPermissionError();
     }
 
     // disable categorization to do this (if enabled)
