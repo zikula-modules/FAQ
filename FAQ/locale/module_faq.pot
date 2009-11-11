@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-09 14:14+0000\n"
+"POT-Creation-Date: 2009-11-11 07:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,11 +73,6 @@ msgstr ""
 msgid "Error! Could not load items."
 msgstr ""
 
-#: pnuserapi.php:105 pnuserapi.php:155 pnuserapi.php:221 pnuser.php:194
-#: pnadminapi.php:29 pnadminapi.php:79 pnadminapi.php:126
-msgid "Error! Could not do what you wanted. Please check your input."
-msgstr ""
-
 #: pnuser.php:120
 msgid "Invalid category"
 msgstr ""
@@ -100,10 +95,6 @@ msgstr ""
 
 #: pnadminapi.php:156 pninit.php:50 pninit.php:160
 msgid "Error! Update attempt failed."
-msgstr ""
-
-#: pnadminapi.php:179
-msgid "Sorry! No authorization to access this module."
 msgstr ""
 
 #: pnadminapi.php:231 pntemplates/faq_user_menu.htm:7
