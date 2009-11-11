@@ -103,7 +103,7 @@ function _faq_migratecategories()
     Loader::loadClassFromModule('Categories', 'CategoryRegistry');
 
     // get the language file
-    $lang = pnUserGetLang();
+    $lang = ZLanguage::getLanguageCode();
 
     // create root category and entry in the categories registry
     _faq_createdefaultcategory('/__SYSTEM__/Modules/FAQ');
@@ -182,7 +182,7 @@ function _faq_createdefaultcategory($regpath = '/__SYSTEM__/Modules/Global')
     Loader::loadClassFromModule('Categories', 'CategoryRegistry');
 
     // get the language file
-    $lang = pnUserGetLang();
+    $lang = ZLanguage::getLanguageCode();
 
     // get the category path for which we're going to insert our place holder category
     $rootcat = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules');
