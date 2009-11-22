@@ -1,6 +1,7 @@
 <!--[*  $Id$  *]-->
+
 <!--[include file="faq_user_menu.htm"]-->
-<!--[*  $Id$  *]-->
+
 <h2><!--[gt text="Question"]--></h2>
 <p><strong><!--[$question|pnmodcallhooks|pnvarprephtmldisplay]--></strong></p>
 
@@ -13,7 +14,7 @@
         <!--[elseif $submittedbyid neq '']-->
         <!--[pnusergetvar name=uname uid=$submittedbyid assign=uname]-->
         <!--[capture assign=faqsubmittedby]--><!--[$uname|userprofilelink]--><!--[/capture]-->
-        <li><!--[gt text="Submitted by %s " tag1=$faqsubmittedby]--></li>
+        <li><!--[gt text="Submitted by %s" tag1=$faqsubmittedby]--></li>
         <!--[/if]-->
         <!--[if $answeredbyid neq '']-->
         <!--[pnusergetvar name=uname uid=$answeredbyid assign=uname]-->
@@ -22,5 +23,6 @@
         <!--[/if]-->
     </ul>
 </div>
+
 <!--[pnmodurl modname=FAQ func=display faqid=$faqid assign=returnurl]-->
 <!--[pnmodcallhooks hookobject=item hookaction=display hookid=$faqid module=FAQ returnurl=$returnurl]-->
