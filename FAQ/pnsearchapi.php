@@ -25,9 +25,9 @@ function faq_searchapi_info()
 function faq_searchapi_options($args)
 {
     if (SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_READ)) {
-        $pnRender = pnRender::getInstance('FAQ');
-        $pnRender->assign('active',(isset($args['active'])&&isset($args['active']['FAQ']))||(!isset($args['active'])));
-        return $pnRender->fetch('faq_search_options.htm');
+        $render = & pnRender::getInstance('FAQ');
+        $render->assign('active',(isset($args['active'])&&isset($args['active']['FAQ']))||(!isset($args['active'])));
+        return $render->fetch('faq_search_options.htm');
     }
 
     return '';

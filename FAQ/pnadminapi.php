@@ -101,8 +101,8 @@ function FAQ_adminapi_delete($args)
     pnModCallHooks('item', 'delete', $args['faqid'], array('module' => 'FAQ'));
 
     // The item has been deleted, so we clear all cached pages of this item.
-    $pnRender = pnRender::getInstance('FAQ');
-    $pnRender->clear_cache(null, $args['faqid']);
+    $render = & pnRender::getInstance('FAQ');
+    $render->clear_cache(null, $args['faqid']);
 
     return true;
 }
@@ -160,8 +160,8 @@ function FAQ_adminapi_update($faq)
     }
 
     // The item has been modified, so we clear all cached pages of this item.
-    $pnRender = pnRender::getInstance('FAQ');
-    $pnRender->clear_cache(null, $faq['faqid']);
+    $render = & pnRender::getInstance('FAQ');
+    $render->clear_cache(null, $faq['faqid']);
 
     // Let any hooks know that we have updated an item
     pnModCallHooks('item', 'update', $faq['faqid'], array('module' => 'FAQ'));
