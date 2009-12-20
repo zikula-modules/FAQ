@@ -20,7 +20,13 @@
  */
 function FAQ_userapi_getall($args)
 {
+    // Security check
+    if (!SecurityUtil::checkPermission('FAQ::', '::', ACCESS_READ)) {
+        return array();
+    }
+
     $dom = ZLanguage::getModuleDomain('FAQ');
+
     // Optional arguments.
     if (!isset($args['startnum']) || !is_numeric($args['startnum'])) {
         $args['startnum'] = 1;
@@ -33,11 +39,6 @@ function FAQ_userapi_getall($args)
     }
     if (!isset($args['order'])) {
         $args['order'] = 'faqid';
-    }
-
-    // Security check
-    if (!SecurityUtil::checkPermission('FAQ::', '::', ACCESS_READ)) {
-        return array();
     }
 
     $args['catFilter'] = array();
@@ -56,8 +57,6 @@ function FAQ_userapi_getall($args)
         $whereclause = ' WHERE pn_answer != \'\'';
     }
 
-    $items = array();
-
     // define the permission filter to apply
     $permFilter = array(array('realm'          => 0,
                               'component_left' => 'FAQ',
@@ -71,16 +70,16 @@ function FAQ_userapi_getall($args)
     // Check for an error with the database code, and if so set an appropriate
     // error message and return
     if ($objArray === false) {
-        return LogUtil::registerError (__('Error! Could not load items.', $dom));
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     // need to do this here as the category expansion code can't know the
     // root category which we need to build the relative path component
     if ($objArray && isset($args['catregistry']) && $args['catregistry']) {
-        if (!($class = Loader::loadClass ('CategoryUtil'))) {
-            pn_exit (__f('Error! Unable to load class [%s%]', 'CategoryRegistryUtil', $dom));
+        if (!Loader::loadClass ('CategoryUtil')) {
+            pn_exit(__f('Error! Unable to load class [%s%]', 'CategoryRegistryUtil', $dom));
         }
-        ObjectUtil::postProcessExpandedObjectArrayCategories ($objArray, $args['catregistry']);
+        ObjectUtil::postProcessExpandedObjectArrayCategories($objArray, $args['catregistry']);
     }
 
     // Return the items
@@ -96,7 +95,6 @@ function FAQ_userapi_getall($args)
  */
 function FAQ_userapi_get($args)
 {
-    $dom = ZLanguage::getModuleDomain('FAQ');
     if (isset($args['objectid']) && is_numeric($args['objectid'])) {
         $args['faqid'] = $args['objectid'];
     }
@@ -149,7 +147,6 @@ function FAQ_userapi_countitems($args)
  */
 function FAQ_userapi_encodeurl($args)
 {
-    $dom = ZLanguage::getModuleDomain('FAQ');
     // check we have the required input
     if (!isset($args['modname']) || !isset($args['func']) || !isset($args['args'])) {
         return LogUtil::registerArgsError();
@@ -215,7 +212,6 @@ function FAQ_userapi_encodeurl($args)
  */
 function FAQ_userapi_decodeurl($args)
 {
-    $dom = ZLanguage::getModuleDomain('FAQ');
     // check we actually have some vars to work with...
     if (!isset($args['vars'])) {
         return LogUtil::registerArgsError();
@@ -281,5 +277,4 @@ function FAQ_userapi_getmodulemeta()
                 'deletefunc'  => 'delete',
                 'titlefield'  => 'question',
                 'itemid'      => 'faqid');
-
 }

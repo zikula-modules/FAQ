@@ -15,22 +15,30 @@
  */
 function FAQ_init()
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
+
     // create table
     if (!DBUtil::createTable('faqanswer')) {
         return false;
     }
 
+    // set up config variables
+    $modvars = array(
+        'itemsperpage' => 25,
+        'enablecategorization' => true,
+        'catmapcount' => true
+    );
+
     // create our default category
     if (!_faq_createdefaultcategory()) {
-        return LogUtil::registerError (__('Error! Creation attempt failed.', $dom));
+        LogUtil::registerStatus(__('Warning! Could not create the default FAQ category tree. If you want to use categorisation with FAQ, register at least one property for the module in the Category Registry.', $dom));
+        $modvars['enablecategorization'] = false;
     }
 
-    // Set up module variables
-    pnModSetVar('FAQ', 'itemsperpage', 25);
-    pnModSetVar('FAQ', 'enablecategorization', true);
-    pnModSetVar('FAQ', 'addcategorytitletopermalink', true);
+    // set up module variables
+    pnModSetVars('FAQ', $modvars);
 
-    // Initialisation successful
+    // initialisation successful
     return true;
 }
 
@@ -39,7 +47,10 @@ function FAQ_init()
  */
 function FAQ_upgrade($oldversion)
 {
-    switch($oldversion) {
+    $dom = ZLanguage::getModuleDomain('FAQ');
+
+    switch ($oldversion)
+    {
         // version 1.11 shipped with PN .7x
         case '2.0':
         case '2.1':
@@ -47,7 +58,7 @@ function FAQ_upgrade($oldversion)
             pnModSetVar('FAQ', 'addcategorytitletopermalink', true);
             pnModDBInfoLoad('FAQ', 'FAQ', true);
             if (!_faq_migratecategories()) {
-                LogUtil::registerError (__('Error! Update attempt failed.', $dom));
+                LogUtil::registerError(__('Error! Update attempt failed.', $dom));
                 return '2.1';
             }
 
@@ -68,16 +79,15 @@ function FAQ_delete()
         return false;
     }
 
-    // Delete module variables
+    // delete module variables
     pnModDelVar('FAQ');
 
-    // Delete entries from category registry
-    pnModDBInfoLoad ('Categories');
-    Loader::loadArrayClassFromModule('Categories', 'CategoryRegistry');
-    $registry = new PNCategoryRegistryArray();
-    $registry->deleteWhere ('crg_modname=\'FAQ\'');
+    // delete entries from category registry 
+    pnModDBInfoLoad('Categories');
+    DBUtil::deleteWhere('categories_registry', "crg_modname = 'FAQ'");
+    DBUtil::deleteWhere('categories_mapobj', "cmo_modname = 'FAQ'");
 
-    // Deletion successful
+    // deletion successful
     return true;
 }
 
@@ -87,6 +97,8 @@ function FAQ_delete()
  */
 function _faq_migratecategories()
 {
+    $dom = ZLanguage::getModuleDomain('FAQ');
+
     // load the admin language file
     // pull all data from the old table
     $prefix = pnConfigGetVar('prefix');
@@ -155,9 +167,10 @@ function _faq_migratecategories()
                          '__CATEGORIES__' => array('Main' => $categorymap[$result->fields[1]]),
                          '__META__' => array('module' => 'FAQ'));
     }
+
     foreach ($pages as $page) {
         if (!DBUtil::updateObject($page, 'faqanswer', '', 'faqid')) {
-            return LogUtil::registerError (__('Error! Update attempt failed.', $dom));
+            return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
         }
     }
 
@@ -176,6 +189,7 @@ function _faq_migratecategories()
 function _faq_createdefaultcategory($regpath = '/__SYSTEM__/Modules/Global')
 {
     $dom = ZLanguage::getModuleDomain('FAQ');
+
     // load necessary classes
     Loader::loadClass('CategoryUtil');
     Loader::loadClassFromModule('Categories', 'Category');

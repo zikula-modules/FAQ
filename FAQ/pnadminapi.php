@@ -22,12 +22,18 @@
  */
 function FAQ_adminapi_create($faq)
 {
-    $dom = ZLanguage::getModuleDomain('FAQ');
+    // Security check
+    if (!SecurityUtil::checkPermission('FAQ::', '::', ACCESS_COMMENT)) {
+        return LogUtil::registerPermissionError();
+    }
+
     // Argument check
     if (!isset($faq['question']) ||
         !isset($faq['answer'])) {
         return LogUtil::registerArgsError();
     }
+
+    $dom = ZLanguage::getModuleDomain('FAQ');
 
     // optional arguments
     if (!isset($faq['submittedby'])) {
@@ -49,13 +55,8 @@ function FAQ_adminapi_create($faq)
         $faq['urltitle'] = DataUtil::formatPermalink($faq['question']);
     }
 
-    // Security check
-    if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_COMMENT)) {
-        return LogUtil::registerPermissionError();
-    }
-
     if (!DBUtil::insertObject($faq, 'faqanswer', 'faqid')) {
-        return LogUtil::registerError (__('Error! Creation attempt failed.', $dom));
+        return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
     }
 
     // Let any hooks know that we have created a new item
@@ -73,17 +74,18 @@ function FAQ_adminapi_create($faq)
  */
 function FAQ_adminapi_delete($args)
 {
-    $dom = ZLanguage::getModuleDomain('FAQ');
     // Argument check
     if (!isset($args['faqid']) || !is_numeric($args['faqid'])) {
         return LogUtil::registerArgsError();
     }
 
+    $dom = ZLanguage::getModuleDomain('FAQ');
+
     // Get the current faq
     $item = pnModAPIFunc('FAQ', 'user', 'get', array('faqid' => $args['faqid']));
 
     if (!$item) {
-        return LogUtil::registerError (__('No such item found.', $dom));
+        return LogUtil::registerError(__('No such item found.', $dom));
     }
 
     // Security check
@@ -92,7 +94,7 @@ function FAQ_adminapi_delete($args)
     }
 
     if (!DBUtil::deleteObjectByID('faqanswer', $args['faqid'], 'faqid')) {
-        return LogUtil::registerError (__('Error! Sorry! Deletion attempt failed.', $dom));
+        return LogUtil::registerError(__('Error! Deletion attempt failed.', $dom));
     }
 
     // Let any hooks know that we have deleted an item
@@ -118,13 +120,14 @@ function FAQ_adminapi_delete($args)
  */
 function FAQ_adminapi_update($faq)
 {
-    $dom = ZLanguage::getModuleDomain('FAQ');
     // Argument check
     if (!isset($faq['question']) ||
         !isset($faq['answer']) ||
         !isset($faq['faqid']) || !is_numeric($faq['faqid'])) {
         return LogUtil::registerArgsError();
     }
+
+    $dom = ZLanguage::getModuleDomain('FAQ');
 
     // optional arguments
     if (!isset($faq['answeredbyid'])) {
@@ -144,7 +147,7 @@ function FAQ_adminapi_update($faq)
     $item = pnModAPIFunc('FAQ', 'user', 'get', array('faqid' => $faq['faqid']));
 
     if (!$item) {
-        return LogUtil::registerError (__('No such item found.', $dom));
+        return LogUtil::registerError(__('No such item found.', $dom));
     }
 
     // Security check.
@@ -153,7 +156,7 @@ function FAQ_adminapi_update($faq)
     }
 
     if (!DBUtil::updateObject($faq, 'faqanswer', '', 'faqid')) {
-        return LogUtil::registerError (__('Error! Update attempt failed.', $dom));
+        return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
     }
 
     // The item has been modified, so we clear all cached pages of this item.
@@ -173,7 +176,6 @@ function FAQ_adminapi_update($faq)
  */
 function FAQ_adminapi_purgepermalinks($args)
 {
-    $dom = ZLanguage::getModuleDomain('FAQ');
     // Security check
     if (!SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
@@ -225,17 +227,23 @@ function FAQ_adminapi_purgepermalinks($args)
 function FAQ_adminapi_getlinks()
 {
     $dom = ZLanguage::getModuleDomain('FAQ');
+
     $links = array();
 
     if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_READ)) {
-        $links[] = array('url' => pnModURL('FAQ', 'admin', 'view'), 'text' => __('View FAQ list', $dom));
+        $links[] = array('url' => pnModURL('FAQ', 'admin', 'view'),
+                         'text' => __('View FAQ list', $dom));
     }
     if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADD)) {
-        $links[] = array('url' => pnModURL('FAQ', 'admin', 'new'), 'text' => __('Create a FAQ', $dom));
+        $links[] = array('url' => pnModURL('FAQ', 'admin', 'new'),
+                         'text' => __('Create a FAQ', $dom));
     }
     if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADMIN)) {
-        $links[] = array('url' => pnModURL('FAQ', 'admin', 'view', array('purge' => 1)), 'text' => __('Purge PermaLinks', $dom));
-        $links[] = array('url' => pnModURL('FAQ', 'admin', 'modifyconfig'), 'text' => __('Settings', $dom));
+        $links[] = array('url' => pnModURL('FAQ', 'admin', 'view', array('purge' => 1)),
+                         'text' => __('Purge PermaLinks', $dom));
+
+        $links[] = array('url' => pnModURL('FAQ', 'admin', 'modifyconfig'),
+                         'text' => __('Settings', $dom));
     }
 
     return $links;

@@ -35,8 +35,8 @@ function FAQ_user_main()
 
     // load the categories system
     if (pnModGetVar('FAQ', 'enablecategorization')) {
-        if (!($class = Loader::loadClass('CategoryUtil')) || !($class = Loader::loadClass('CategoryRegistryUtil'))) {
-            pn_exit (__f('Error! Unable to load class [%s%]', 'CategoryUtil | CategoryRegistryUtil', $dom));
+        if (!Loader::loadClass('CategoryUtil') || !Loader::loadClass('CategoryRegistryUtil')) {
+            pn_exit(__f('Error! Unable to load class [%s%]', 'CategoryUtil | CategoryRegistryUtil', $dom));
         }
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('FAQ', 'faqanswer');
         $categories = array();
@@ -68,17 +68,18 @@ function FAQ_user_main()
  * @param        integer      $startnum    (optional) The number of the start item
  * @return       output       The overview page
  */
-function FAQ_user_view()
+function FAQ_user_view($args)
 {
-    $dom = ZLanguage::getModuleDomain('FAQ');
     // Security check
     if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_OVERVIEW)) {
         return LogUtil::registerPermissionError();
     }
 
-    $startnum = (int)FormUtil::getPassedValue('startnum', isset($args['startnum']) ? $args['startnum'] : 1, 'GET');
-    $cat      = (string)FormUtil::getPassedValue('cat', isset($args['cat']) ? $args['cat'] : null, 'GET');
-    $prop     = (string)FormUtil::getPassedValue('prop', isset($args['prop']) ? $args['prop'] : null, 'GET');
+    $dom = ZLanguage::getModuleDomain('FAQ');
+
+    $startnum = isset($args['startnum']) ? $args['startnum'] : (int)FormUtil::getPassedValue('startnum', 1, 'GET');
+    $cat      = isset($args['cat']) ? $args['cat'] : (string)FormUtil::getPassedValue('cat', null, 'GET');
+    $prop     = isset($args['prop']) ? $args['prop'] : (string)FormUtil::getPassedValue('prop', null, 'GET');
     $func     = (string)FormUtil::getPassedValue('func');
 
     // defaults and input validation
@@ -92,8 +93,8 @@ function FAQ_user_view()
     // check if categorisation is enabled
     // and if its requested to list the recent faqs
     if ($modvars['enablecategorization'] && !empty($prop) && !empty($cat)) {
-        if (!($class = Loader::loadClass('CategoryUtil')) || !($class = Loader::loadClass('CategoryRegistryUtil'))) {
-            pn_exit (__f('Error! Unable to load class [%s%]', 'CategoryUtil | CategoryRegistryUtil', $dom));
+        if (!Loader::loadClass('CategoryUtil') || !Loader::loadClass('CategoryRegistryUtil')) {
+            pn_exit(__f('Error! Unable to load class [%s%]', 'CategoryUtil | CategoryRegistryUtil', $dom));
         }
         // get the categories registered for the Pages
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('FAQ', 'faqanswer');
@@ -117,7 +118,7 @@ function FAQ_user_view()
                 }
                 $catFilter = array($prop => $catstofilter);
             } else {
-            	LogUtil::registerError(__('Invalid category', $dom));
+            	LogUtil::registerError(__('Invalid category passed.', $dom));
             }
         }
     }
@@ -182,6 +183,7 @@ function FAQ_user_view()
 function FAQ_user_display($args)
 {
     $dom = ZLanguage::getModuleDomain('FAQ');
+
     $faqid    = FormUtil::getPassedValue('faqid', isset($args['faqid']) ? $args['faqid'] : null, 'REQUEST');
     $title    = FormUtil::getPassedValue('title', isset($args['title']) ? $args['title'] : null, 'REQUEST');
     $objectid = FormUtil::getPassedValue('objectid', isset($args['objectid']) ? $args['objectid'] : null, 'REQUEST');
@@ -266,14 +268,15 @@ function FAQ_user_ask()
  */
 function FAQ_user_create($args)
 {
-    $dom = ZLanguage::getModuleDomain('FAQ');
-    // Get parameters from whatever input we need
-    $faq = FormUtil::getPassedValue('faq', isset($args['faq']) ? $args['faq'] : null, 'POST');
-
     // Confirm authorisation code
     if (!SecurityUtil::confirmAuthKey()) {
-        return LogUtil::registerAuthidError (pnModURL('FAQ', 'user', 'view'));
+        return LogUtil::registerAuthidError(pnModURL('FAQ', 'user', 'view'));
     }
+
+    $dom = ZLanguage::getModuleDomain('FAQ');
+
+    // Get parameters from whatever input we need
+    $faq = FormUtil::getPassedValue('faq', isset($args['faq']) ? $args['faq'] : null, 'POST');
 
     if (pnUserLoggedIn() || !isset($faq['submittedby'])) {
         $faq['submittedby'] = '';
@@ -287,7 +290,7 @@ function FAQ_user_create($args)
 
     if ($faqid != false) {
         // Success
-        LogUtil::registerStatus (__('Thank you for your question', $dom));
+        LogUtil::registerStatus(__('Thank you for your question', $dom));
     }
 
     return pnRedirect(pnModURL('FAQ', 'user', 'view'));

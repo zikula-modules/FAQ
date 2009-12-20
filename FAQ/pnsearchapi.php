@@ -39,11 +39,12 @@ function faq_searchapi_options($args)
 function faq_searchapi_search($args)
 {
     $dom = ZLanguage::getModuleDomain('FAQ');
+
     pnModDBInfoLoad('Search');
-    $pntable = pnDBGetTables();
-    $faqtable = $pntable['faqanswer'];
-    $faqcolumn = $pntable['faqanswer_column'];
-    $searchTable = $pntable['search_result'];
+
+    $pntable      = &pnDBGetTables();
+    $faqcolumn    = $pntable['faqanswer_column'];
+    $searchTable  = $pntable['search_result'];
     $searchColumn = $pntable['search_result_column'];
 
     $where = search_construct_where($args,
@@ -59,10 +60,11 @@ function faq_searchapi_search($args)
                               'instance_left'  => 'faqid',
                               'instance_right' => '',
                               'level'          => ACCESS_READ));
+
     // get the result set
     $objArray = DBUtil::selectObjectArray('faqanswer', $where, 'faqid', 1, -1, '', $permFilter);
     if ($objArray === false) {
-        return LogUtil::registerError (__('Error! Could not load items.', $dom));
+        return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
     $addcategorytitletopermalink = pnModGetVar('FAQ', 'addcategorytitletopermalink');
@@ -93,7 +95,7 @@ VALUES ";
                    . '\'' . DataUtil::formatForStore($sessionId) . '\')';
         $insertResult = DBUtil::executeSQL($sql);
         if (!$insertResult) {
-            return LogUtil::registerError (__('Error! Could not load items.', $dom));
+            return LogUtil::registerError(__('Error! Could not load items.', $dom));
         }
     }
 
