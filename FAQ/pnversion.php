@@ -15,7 +15,7 @@ $dom = ZLanguage::getModuleDomain('FAQ');
 $modversion['name']           = 'FAQ';
 $modversion['displayname']    = __('FAQ', $dom);
 $modversion['description']    = __('Frequently Asked Questions', $dom);
-$modversion['version']        = '2.3';
+$modversion['version']        = '2.3.1';
 //! this defines the module's url
 $modversion['url']            = __('faq', $dom);
 

@@ -63,6 +63,9 @@ function FAQ_upgrade($oldversion)
             }
 
         case '2.2':
+        case '2.3':
+        case '2.3.1':
+            // further upgrade routines
     }
 
     // upgrade successful
