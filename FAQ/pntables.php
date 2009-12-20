@@ -27,25 +27,29 @@ function FAQ_pntables()
 
     // Full table definition
     $pntable['faqanswer'] = DBUtil::getLimitedTablename('faqanswer');
-    $pntable['faqanswer_column'] = array ('faqid'         => 'pn_id',
-                                          'question'      => 'pn_question',
-                                          'urltitle'      => 'pn_urltitle',
-                                          'answer'        => 'pn_answer',
-                                          'submittedbyid' => 'pn_submittedbyid',
-                                          'answeredbyid'  => 'pn_answeredbyid');
-    $pntable['faqanswer_column_def'] = array('faqid'           => 'I NOTNULL AUTO PRIMARY',
-                                             'question'        => 'X DEFAULT NULL',
-                                             'urltitle'        => "X NOTNULL DEFAULT ''",
-                                             'answer'          => 'X',
-                                             'submittedbyid'   => 'I NOTNULL',
-                                             'answeredbyid'    => 'I NOTNULL');
+    $pntable['faqanswer_column'] = array(
+        'faqid'         => 'pn_id',
+        'question'      => 'pn_question',
+        'urltitle'      => 'pn_urltitle',
+        'answer'        => 'pn_answer',
+        'submittedbyid' => 'pn_submittedbyid',
+        'answeredbyid'  => 'pn_answeredbyid'
+    );
+    $pntable['faqanswer_column_def'] = array(
+        'faqid'           => 'I NOTNULL AUTO PRIMARY',
+        'question'        => 'X DEFAULT NULL',
+        'urltitle'        => "X NOTNULL DEFAULT ''",
+        'answer'          => 'X',
+        'submittedbyid'   => 'I NOTNULL',
+        'answeredbyid'    => 'I NOTNULL'
+    );
 
     // Enable categorization services
     $pntable['faqanswer_db_extra_enable_categorization'] = pnModGetVar('FAQ', 'enablecategorization');
     $pntable['faqanswer_primary_key_column'] = 'faqid';
 
     // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition ($pntable['faqanswer_column'], 'pn_');
+    ObjectUtil::addStandardFieldsToTableDefinition($pntable['faqanswer_column'], 'pn_');
     ObjectUtil::addStandardFieldsToTableDataDefinition($pntable['faqanswer_column_def']);
 
     // old tables for upgrade purposes
