@@ -40,8 +40,8 @@ function FAQ_pntables()
         'question'        => 'X DEFAULT NULL',
         'urltitle'        => "X NOTNULL DEFAULT ''",
         'answer'          => 'X',
-        'submittedbyid'   => 'I NOTNULL',
-        'answeredbyid'    => 'I NOTNULL'
+        'submittedbyid'   => "I NOTNULL DEFAULT ''",
+        'answeredbyid'    => "I NOTNULL DEFAULT ''"
     );
 
     // Enable categorization services
