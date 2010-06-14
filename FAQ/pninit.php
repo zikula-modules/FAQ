@@ -36,7 +36,7 @@ function FAQ_init()
     }
 
     // set up module variables
-    pnModSetVars('FAQ', $modvars);
+    ModUtil::setVars('FAQ', $modvars);
 
     // initialisation successful
     return true;
@@ -54,9 +54,9 @@ function FAQ_upgrade($oldversion)
         // version 1.11 shipped with PN .7x
         case '2.0':
         case '2.1':
-            pnModSetVar('FAQ', 'enablecategorization', true);
-            pnModSetVar('FAQ', 'addcategorytitletopermalink', true);
-            pnModDBInfoLoad('FAQ', 'FAQ', true);
+            ModUtil::setVar('FAQ', 'enablecategorization', true);
+            ModUtil::setVar('FAQ', 'addcategorytitletopermalink', true);
+            ModUtil::dbInfoLoad('FAQ', 'FAQ', true);
             if (!_faq_migratecategories()) {
                 LogUtil::registerError(__('Error! Update attempt failed.', $dom));
                 return '2.1';
@@ -83,10 +83,10 @@ function FAQ_delete()
     }
 
     // delete module variables
-    pnModDelVar('FAQ');
+    ModUtil::delVar('FAQ');
 
     // delete entries from category registry 
-    pnModDBInfoLoad('Categories');
+    ModUtil::dbInfoLoad('Categories');
     DBUtil::deleteWhere('categories_registry', "crg_modname = 'FAQ'");
     DBUtil::deleteWhere('categories_mapobj', "cmo_modname = 'FAQ'");
 
@@ -104,7 +104,7 @@ function _faq_migratecategories()
 
     // load the admin language file
     // pull all data from the old table
-    $prefix = pnConfigGetVar('prefix');
+    $prefix = System::getVar('prefix');
     $sql = "SELECT pn_categories, pn_id_cat, pn_parent_id FROM {$prefix}_faqcategories";
     $result = DBUtil::executeSQL($sql);
     $categories = array();

@@ -40,7 +40,7 @@ function FAQ_adminapi_create($faq)
         $faq['submittedby'] = '';
     }
     if (!isset($faq['submittedbyid'])) {
-        $faq['submittedbyid'] = pnUserGetVar('uid');
+        $faq['submittedbyid'] = UserUtil::getVar('uid');
     }
     if (!isset($faq['answeredbyid'])) {
         if (strlen($faq['answer']) > 0) {
@@ -60,7 +60,7 @@ function FAQ_adminapi_create($faq)
     }
 
     // Let any hooks know that we have created a new item
-    pnModCallHooks('item', 'create', $faq['faqid'], array('module' => 'FAQ'));
+    ModUtil::callHooks('item', 'create', $faq['faqid'], array('module' => 'FAQ'));
 
     // Return the id of the newly created item to the calling process
     return $faq['faqid'];
@@ -82,7 +82,7 @@ function FAQ_adminapi_delete($args)
     $dom = ZLanguage::getModuleDomain('FAQ');
 
     // Get the current faq
-    $item = pnModAPIFunc('FAQ', 'user', 'get', array('faqid' => $args['faqid']));
+    $item = ModUtil::apiFunc('FAQ', 'user', 'get', array('faqid' => $args['faqid']));
 
     if (!$item) {
         return LogUtil::registerError(__('No such item found.', $dom));
@@ -98,10 +98,10 @@ function FAQ_adminapi_delete($args)
     }
 
     // Let any hooks know that we have deleted an item
-    pnModCallHooks('item', 'delete', $args['faqid'], array('module' => 'FAQ'));
+    ModUtil::callHooks('item', 'delete', $args['faqid'], array('module' => 'FAQ'));
 
     // The item has been deleted, so we clear all cached pages of this item.
-    $render = & pnRender::getInstance('FAQ');
+    $render = & Renderer::getInstance('FAQ');
     $render->clear_cache(null, $args['faqid']);
 
     return true;
@@ -132,7 +132,7 @@ function FAQ_adminapi_update($faq)
     // optional arguments
     if (!isset($faq['answeredbyid'])) {
         if (strlen($faq['answer']) > 0) {
-            $faq['answeredbyid'] = pnUserGetVar('uid');
+            $faq['answeredbyid'] = UserUtil::getVar('uid');
         } else {
             $faq['answeredbyid'] = '';
         }
@@ -144,7 +144,7 @@ function FAQ_adminapi_update($faq)
     }
 
     // Get the current faq
-    $item = pnModAPIFunc('FAQ', 'user', 'get', array('faqid' => $faq['faqid']));
+    $item = ModUtil::apiFunc('FAQ', 'user', 'get', array('faqid' => $faq['faqid']));
 
     if (!$item) {
         return LogUtil::registerError(__('No such item found.', $dom));
@@ -160,11 +160,11 @@ function FAQ_adminapi_update($faq)
     }
 
     // The item has been modified, so we clear all cached pages of this item.
-    $render = & pnRender::getInstance('FAQ');
+    $render = & Renderer::getInstance('FAQ');
     $render->clear_cache(null, $faq['faqid']);
 
     // Let any hooks know that we have updated an item
-    pnModCallHooks('item', 'update', $faq['faqid'], array('module' => 'FAQ'));
+    ModUtil::callHooks('item', 'update', $faq['faqid'], array('module' => 'FAQ'));
 
     return true;
 }
@@ -182,10 +182,10 @@ function FAQ_adminapi_purgepermalinks($args)
     }
 
     // disable categorization to do this (if enabled)
-    $catenabled = pnModGetVar('FAQ', 'enablecategorization');
+    $catenabled = ModUtil::getVar('FAQ', 'enablecategorization');
     if ($catenabled) {
-        pnModSetVar('FAQ', 'enablecategorization', false);
-        pnModDBInfoLoad('FAQ', 'FAQ', true);
+        ModUtil::setVar('FAQ', 'enablecategorization', false);
+        ModUtil::dbInfoLoad('FAQ', 'FAQ', true);
     }
 
     // get all the ID and permalink of the table
@@ -204,7 +204,7 @@ function FAQ_adminapi_purgepermalinks($args)
 
     // restore the categorization if was enabled
     if ($catenabled) {
-        pnModSetVar('FAQ', 'enablecategorization', true);
+        ModUtil::setVar('FAQ', 'enablecategorization', true);
     }
 
     if (empty($data)) {
@@ -231,18 +231,18 @@ function FAQ_adminapi_getlinks()
     $links = array();
 
     if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_READ)) {
-        $links[] = array('url' => pnModURL('FAQ', 'admin', 'view'),
+        $links[] = array('url' => ModUtil::url('FAQ', 'admin', 'view'),
                          'text' => __('View FAQ list', $dom));
     }
     if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADD)) {
-        $links[] = array('url' => pnModURL('FAQ', 'admin', 'new'),
+        $links[] = array('url' => ModUtil::url('FAQ', 'admin', 'new'),
                          'text' => __('Create a FAQ', $dom));
     }
     if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADMIN)) {
-        $links[] = array('url' => pnModURL('FAQ', 'admin', 'view', array('purge' => 1)),
+        $links[] = array('url' => ModUtil::url('FAQ', 'admin', 'view', array('purge' => 1)),
                          'text' => __('Purge PermaLinks', $dom));
 
-        $links[] = array('url' => pnModURL('FAQ', 'admin', 'modifyconfig'),
+        $links[] = array('url' => ModUtil::url('FAQ', 'admin', 'modifyconfig'),
                          'text' => __('Settings', $dom));
     }
 

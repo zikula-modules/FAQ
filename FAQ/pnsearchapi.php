@@ -25,7 +25,7 @@ function faq_searchapi_info()
 function faq_searchapi_options($args)
 {
     if (SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_READ)) {
-        $render = & pnRender::getInstance('FAQ');
+        $render = & Renderer::getInstance('FAQ');
         $render->assign('active',(isset($args['active'])&&isset($args['active']['FAQ']))||(!isset($args['active'])));
         return $render->fetch('faq_search_options.htm');
     }
@@ -40,9 +40,9 @@ function faq_searchapi_search($args)
 {
     $dom = ZLanguage::getModuleDomain('FAQ');
 
-    pnModDBInfoLoad('Search');
+    ModUtil::dbInfoLoad('Search');
 
-    $pntable      = &pnDBGetTables();
+    $pntable      = &System::dbGetTables();
     $faqcolumn    = $pntable['faqanswer_column'];
     $searchTable  = $pntable['search_result'];
     $searchColumn = $pntable['search_result_column'];
@@ -67,7 +67,7 @@ function faq_searchapi_search($args)
         return LogUtil::registerError(__('Error! Could not load items.', $dom));
     }
 
-    $addcategorytitletopermalink = pnModGetVar('FAQ', 'addcategorytitletopermalink');
+    $addcategorytitletopermalink = ModUtil::getVar('FAQ', 'addcategorytitletopermalink');
 
     $insertSql =
 "INSERT INTO $searchTable
@@ -113,7 +113,7 @@ function faq_searchapi_search_check(&$args)
     $datarow = &$args['datarow'];
     $extra = unserialize($datarow['extra']);
 
-    $datarow['url'] = pnModUrl('FAQ', 'user', 'display', array('faqid' => $extra['faqid'], 'cat' => $extra['cat']));
+    $datarow['url'] = ModUtil::url('FAQ', 'user', 'display', array('faqid' => $extra['faqid'], 'cat' => $extra['cat']));
 
     return true;
 }

@@ -77,7 +77,7 @@ function FAQ_userapi_getall($args)
     // root category which we need to build the relative path component
     if ($objArray && isset($args['catregistry']) && $args['catregistry']) {
         if (!Loader::loadClass ('CategoryUtil')) {
-            pn_exit(__f('Error! Unable to load class [%s%]', 'CategoryRegistryUtil', $dom));
+            z_exit(__f('Error! Unable to load class [%s%]', 'CategoryRegistryUtil', $dom));
         }
         ObjectUtil::postProcessExpandedObjectArrayCategories($objArray, $args['catregistry']);
     }
@@ -179,8 +179,8 @@ function FAQ_userapi_encodeurl($args)
             $args['args']['faqid'] = $args['args']['objectid'];
         }
         // get the item (will be cached by DBUtil)
-        $item = pnModAPIFunc('FAQ', 'user', 'get', array('faqid' => $args['args']['faqid']));
-        if (pnModGetVar('FAQ', 'addcategorytitletopermalink') && isset($args['args']['cat'])) {
+        $item = ModUtil::apiFunc('FAQ', 'user', 'get', array('faqid' => $args['args']['faqid']));
+        if (ModUtil::getVar('FAQ', 'addcategorytitletopermalink') && isset($args['args']['cat'])) {
             $vars = $args['args']['cat'].'/'.$item['urltitle'];
         } else {
             $vars = $item['urltitle'];
@@ -222,12 +222,12 @@ function FAQ_userapi_decodeurl($args)
 
     // set the correct function name based on our input
     if (empty($args['vars'][2])) {
-        pnQueryStringSetVar('func', 'main');
+        System::queryStringSetVar('func', 'main');
     } elseif (!in_array($args['vars'][2], $funcs)) {
-        pnQueryStringSetVar('func', 'display');
+        System::queryStringSetVar('func', 'display');
         $nextvar = 2;
     } else {
-        pnQueryStringSetVar('func', $args['vars'][2]);
+        System::queryStringSetVar('func', $args['vars'][2]);
         $nextvar = 3;
     }
 
@@ -235,7 +235,7 @@ function FAQ_userapi_decodeurl($args)
     if (FormUtil::getPassedValue('func') == 'view' && isset($args['vars'][$nextvar])) {
         // get rid of unused vars
         $args['vars'] = array_slice($args['vars'], $nextvar);
-        pnQueryStringSetVar('prop', (string)$args['vars'][0]);
+        System::queryStringSetVar('prop', (string)$args['vars'][0]);
 
         if (isset ($args['vars'][1])) {
             // check if there's a page arg
@@ -243,19 +243,19 @@ function FAQ_userapi_decodeurl($args)
             ($args['vars'][$varscount-2] == 'page') ? $pagersize = 2 : $pagersize = 0;
             // extract the category path
             $cat = implode('/', array_slice($args['vars'], 1, $varscount - $pagersize - 1));
-            pnQueryStringSetVar('cat', $cat);
+            System::queryStringSetVar('cat', $cat);
         }
     }
 
     // identify the correct parameter to identify the page
     if (FormUtil::getPassedValue('func') == 'display') {
-        if (pnModGetVar('FAQ', 'addcategorytitletopermalink') && !empty($args['vars'][$nextvar+1])) {
+        if (ModUtil::getVar('FAQ', 'addcategorytitletopermalink') && !empty($args['vars'][$nextvar+1])) {
             $nextvar++;
         }
         if (is_numeric($args['vars'][$nextvar])) {
-            pnQueryStringSetVar('faqid', $args['vars'][$nextvar]);
+            System::queryStringSetVar('faqid', $args['vars'][$nextvar]);
         } else {
-            pnQueryStringSetVar('title', $args['vars'][$nextvar]);
+            System::queryStringSetVar('title', $args['vars'][$nextvar]);
         }
     }
 

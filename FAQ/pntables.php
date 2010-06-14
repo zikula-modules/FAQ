@@ -15,7 +15,7 @@
  *
  * This function is called internally by the core whenever the module is
  * loaded. It delivers the table information to the core.
- * It can be loaded explicitly using the pnModDBInfoLoad() API function.
+ * It can be loaded explicitly using the ModUtil::dbInfoLoad() API function.
  *
  * @author       Xiaoyu Huang
  * @return       array       The table information.
@@ -45,7 +45,7 @@ function FAQ_pntables()
     );
 
     // Enable categorization services
-    $pntable['faqanswer_db_extra_enable_categorization'] = pnModGetVar('FAQ', 'enablecategorization');
+    $pntable['faqanswer_db_extra_enable_categorization'] = ModUtil::getVar('FAQ', 'enablecategorization');
     $pntable['faqanswer_primary_key_column'] = 'faqid';
 
     // add standard data fields
