@@ -67,7 +67,7 @@
                 {/if}
                 <td>
                     {foreach item=option from=$faq.options}
-                    <a href="{$option.url|varprepfordisplay}">{img modname='core' set='icons/extrasmall' src=$option.image title=$option.title alt=$option.title}</a>
+                    <a href="{$option.url|safetext}">{img modname='core' set='icons/extrasmall' src=$option.image title=$option.title alt=$option.title}</a>
                     {/foreach}
                 </td>
             </tr>

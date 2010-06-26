@@ -7,22 +7,22 @@
     <form id="faq_admin_modifyform" class="z-form z-linear" action="{modurl modname="FAQ" type="admin" func="update"}" method="post" enctype="application/x-www-form-urlencoded">
         <div>
             <input type="hidden" name="authid" value="{insert name="generateauthkey" module="FAQ"}" />
-            <input type="hidden" name="faq[faqid]" value="{$faqid|varprepfordisplay}" />
-            <input type="hidden" name="faq[submittedbyid]" value="{$submittedbyid|varprepfordisplay}" />
+            <input type="hidden" name="faq[faqid]" value="{$faqid|safetext}" />
+            <input type="hidden" name="faq[submittedbyid]" value="{$submittedbyid|safetext}" />
             <fieldset>
                 <legend>{gt text="$templatetitle"}</legend>
                 <div class="z-formrow">
                     <label for="faq_question">{gt text="Question"}</label>
-                    <textarea id="faq_question" name="faq[question]" rows="10" cols="50">{$question|varprepfordisplay}</textarea>
+                    <textarea id="faq_question" name="faq[question]" rows="10" cols="50">{$question|safetext}</textarea>
                 </div>
                 <div class="z-formrow">
                     <label for="faq_urltitle">{gt text="PermaLink URL title"}</label>
-                    <input id="faq_urltitle" name="faq[urltitle]" type="text" size="32" maxlength="255" value="{$urltitle|varprepfordisplay}" />
+                    <input id="faq_urltitle" name="faq[urltitle]" type="text" size="32" maxlength="255" value="{$urltitle|safetext}" />
                     <span class="z-sub">{gt text="(Blank = auto-generate)"}</span>
                 </div>
                 <div class="z-formrow">
                     <label for="faqanswer">{gt text="Answer"}</label>
-                    <textarea id="faqanswer" name="faq[answer]" rows="10" cols="50">{$answer|varprepfordisplay}</textarea>
+                    <textarea id="faqanswer" name="faq[answer]" rows="10" cols="50">{$answer|safetext}</textarea>
                 </div>
                 {if $enablecategorization}
                 <div class="z-formrow">

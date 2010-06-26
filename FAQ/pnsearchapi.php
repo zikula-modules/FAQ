@@ -42,7 +42,7 @@ function faq_searchapi_search($args)
 
     ModUtil::dbInfoLoad('Search');
 
-    $pntable      = &System::dbGetTables();
+    $pntable      = &DBUtil::getTables();
     $faqcolumn    = $pntable['faqanswer_column'];
     $searchTable  = $pntable['search_result'];
     $searchColumn = $pntable['search_result_column'];
