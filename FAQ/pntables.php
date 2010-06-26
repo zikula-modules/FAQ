@@ -20,7 +20,7 @@
  * @author       Xiaoyu Huang
  * @return       array       The table information.
  */
-function FAQ_tables()()
+function FAQ_tables()
 {
     // Initialise table array
     $pntable = array();
