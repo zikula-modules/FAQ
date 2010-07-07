@@ -25,7 +25,7 @@ function faq_searchapi_info()
 function faq_searchapi_options($args)
 {
     if (SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_READ)) {
-        $render = & Renderer::getInstance('FAQ');
+        $render = & Zikula_View::getInstance('FAQ');
         $render->assign('active',(isset($args['active'])&&isset($args['active']['FAQ']))||(!isset($args['active'])));
         return $render->fetch('faq_search_options.htm');
     }

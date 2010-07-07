@@ -51,8 +51,8 @@
         <tbody>
             {foreach from=$faqs item=faq}
             <tr class="{cycle values="z-odd,z-even"}">
-                <td>{$faq.faqid|varprephtmldisplay}</td>
-                <td>{$faq.question|strip_tags|varprephtmldisplay|truncate:30}</td>
+                <td>{$faq.faqid|safehtml}</td>
+                <td>{$faq.question|strip_tags|safehtml|truncate:30}</td>
                 <td>
                     {if $faq.answer neq ''}
                     {img modname='core' set='icons/extrasmall' src='button_ok.gif'  __alt='Yes'  __title='Yes'}

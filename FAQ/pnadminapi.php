@@ -101,7 +101,7 @@ function FAQ_adminapi_delete($args)
     ModUtil::callHooks('item', 'delete', $args['faqid'], array('module' => 'FAQ'));
 
     // The item has been deleted, so we clear all cached pages of this item.
-    $render = & Renderer::getInstance('FAQ');
+    $render = & Zikula_View::getInstance('FAQ');
     $render->clear_cache(null, $args['faqid']);
 
     return true;
@@ -160,7 +160,7 @@ function FAQ_adminapi_update($faq)
     }
 
     // The item has been modified, so we clear all cached pages of this item.
-    $render = & Renderer::getInstance('FAQ');
+    $render = & Zikula_View::getInstance('FAQ');
     $render->clear_cache(null, $faq['faqid']);
 
     // Let any hooks know that we have updated an item

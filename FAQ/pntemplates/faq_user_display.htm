@@ -3,10 +3,10 @@
 {include file="faq_user_menu.htm"}
 
 <h2>{gt text="Question"}</h2>
-<p><strong>{$question|modcallhooks|varprephtmldisplay}</strong></p>
+<p><strong>{$question|modcallhooks|safehtml}</strong></p>
 
 <h2>{gt text="Answer"}</h2>
-<p>{$answer|modcallhooks|varprephtmldisplay}</p>
+<p>{$answer|modcallhooks|safehtml}</p>
 <div style="border-top: 1px dashed #AAA">
     <ul>
         {if $submittedby neq ''}

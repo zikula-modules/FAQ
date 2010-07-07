@@ -131,7 +131,7 @@ function _faq_migratecategories()
     foreach ($categories as $category) {
         // we'll deal with sub categories on a second pass
         if ($category[2] != 0) continue;
-        $cat = new PNCategory ();
+        $cat = new Categories_DBObject_Category ();
         $cat->setDataField('parent_id', $rootcat['id']);
         $cat->setDataField('name', $category[0]);
         $cat->setDataField('display_name', array($lang => $category[0]));
@@ -148,7 +148,7 @@ function _faq_migratecategories()
     foreach ($categories as $category) {
         // root categories are already done
         if ($category[2] == 0) continue;
-        $cat = new PNCategory ();
+        $cat = new Categories_DBObject_Category ();
         $cat->setDataField('parent_id', $categorymap[$category[2]]);
         $cat->setDataField('name', $category[0]);
         $cat->setDataField('display_name', array($lang => $category[0]));
@@ -207,7 +207,7 @@ function _faq_createdefaultcategory($regpath = '/__SYSTEM__/Modules/Global')
 
     if (!$fCat) {
         // create placeholder for all our migrated categories
-        $cat = new PNCategory ();
+        $cat = new Categories_DBObject_Category ();
         $cat->setDataField('parent_id', $rootcat['id']);
         $cat->setDataField('name', 'FAQ');
         $cat->setDataField('display_name', array($lang => __('FAQ', $dom)));
@@ -223,7 +223,7 @@ function _faq_createdefaultcategory($regpath = '/__SYSTEM__/Modules/Global')
     $rootcat = CategoryUtil::getCategoryByPath($regpath);
     if ($rootcat) {
         // create an entry in the categories registry
-        $registry = new PNCategoryRegistry();
+        $registry = new Categories_DBObject_CategoryRegistry();
         $registry->setDataField('modname', 'FAQ');
         $registry->setDataField('table', 'faqanswer');
         $registry->setDataField('property', 'Main');

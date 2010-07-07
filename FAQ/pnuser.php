@@ -31,7 +31,7 @@ function FAQ_user_main()
     }
 
     // Create output object
-    $render = & Renderer::getInstance('FAQ');
+    $render = & Zikula_View::getInstance('FAQ');
 
     // load the categories system
     if (ModUtil::getVar('FAQ', 'enablecategorization')) {
@@ -132,7 +132,7 @@ function FAQ_user_view($args)
                                 'catregistry' => isset($catregistry) ? $catregistry : null));
 
     // Create output object
-    $render = & Renderer::getInstance('FAQ', false);
+    $render = & Zikula_View::getInstance('FAQ', false);
 
     // assign various useful template variables
     $render->assign('startnum', $startnum);
@@ -200,7 +200,7 @@ function FAQ_user_display($args)
     }
 
     // Create output object
-    $render = & Renderer::getInstance('FAQ');
+    $render = & Zikula_View::getInstance('FAQ');
 
     // set the cache id
     if (isset($faqid)) {
@@ -250,7 +250,7 @@ function FAQ_user_ask()
     }
 
     // Create output object
-    $render = & Renderer::getInstance('FAQ');
+    $render = & Zikula_View::getInstance('FAQ');
 
     // assign logged in state
     $render->assign('loggedin', UserUtil::isLoggedIn());

@@ -57,11 +57,11 @@
 
                     {usergetvar name=uname uid=$cr_uid assign=uname}
                     {capture assign=faqcreatedby}{$uname|userprofilelink}{/capture}
-                    <li>{gt text='Created by %1$s on %2$s' tag1=$faqcreatedby tag2=$cr_date|date_format:'datetimelong'}</li>
+                    <li>{gt text='Created by %1$s on %2$s' tag1=$faqcreatedby tag2=$cr_date|dateformat:'datetimelong'}</li>
 
                     {usergetvar name=uname uid=$lu_uid assign=uname}
                     {capture assign=faqupdatedby}{$uname|userprofilelink}{/capture}
-                    <li>{gt text='Updated by %1$s on %2$s' tag1=$faqupdatedby tag2=$lu_date|date_format:'datetimelong'}</li>
+                    <li>{gt text='Updated by %1$s on %2$s' tag1=$faqupdatedby tag2=$lu_date|dateformat:'datetimelong'}</li>
                 </ul>
             </fieldset>
             {modcallhooks hookobject=item hookaction=modify hookid=$faqid module=FAQ}
