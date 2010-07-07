@@ -85,7 +85,7 @@ function FAQ_delete()
     // delete module variables
     ModUtil::delVar('FAQ');
 
-    // delete entries from category registry 
+    // delete entries from category registry
     ModUtil::dbInfoLoad('Categories');
     DBUtil::deleteWhere('categories_registry', "crg_modname = 'FAQ'");
     DBUtil::deleteWhere('categories_mapobj', "cmo_modname = 'FAQ'");
@@ -223,7 +223,7 @@ function _faq_createdefaultcategory($regpath = '/__SYSTEM__/Modules/Global')
     $rootcat = CategoryUtil::getCategoryByPath($regpath);
     if ($rootcat) {
         // create an entry in the categories registry
-        $registry = new Categories_DBObject_CategoryRegistry();
+        $registry = new Categories_DBObject_Registry();
         $registry->setDataField('modname', 'FAQ');
         $registry->setDataField('table', 'faqanswer');
         $registry->setDataField('property', 'Main');
