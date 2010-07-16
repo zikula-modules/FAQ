@@ -20,7 +20,6 @@ class FAQ_Version extends Zikula_Version
         $meta['version']        = '2.3.2';
         //! this defines the module's url
         $meta['url']            = $this->__('faq');
-        $meta['contact']        = 'http://zikula.org/';
 
         $meta['securityschema'] = array('FAQ::' => 'FAQ ID::');
         return $meta;
