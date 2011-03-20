@@ -10,7 +10,7 @@
  * @subpackage FAQ
  */
 
-class FAQ_Api_Admin extends Zikula_Api
+class FAQ_Api_Admin extends Zikula_AbstractApi
 {
     /**
      * create a new FAQ

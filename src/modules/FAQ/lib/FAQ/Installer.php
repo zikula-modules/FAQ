@@ -10,7 +10,7 @@
  * @subpackage FAQ
  */
 
-class FAQ_Installer extends Zikula_Installer
+class FAQ_Installer extends Zikula_AbstractInstaller
 {
     /**
      * init faq module

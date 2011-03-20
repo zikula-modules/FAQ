@@ -9,7 +9,7 @@
  * @subpackage FAQ
  */
 
-class FAQ_Version extends Zikula_Version
+class FAQ_Version extends Zikula_AbstractVersion
 {
     public function getMetaData()
     {

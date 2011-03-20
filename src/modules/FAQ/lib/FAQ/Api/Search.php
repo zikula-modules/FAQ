@@ -10,7 +10,7 @@
  * @subpackage FAQ
  */
 
-class FAQ_Api_Search extends Zikula_Api
+class FAQ_Api_Search extends Zikula_AbstractApi
 {
     /**
      * Search plugin info

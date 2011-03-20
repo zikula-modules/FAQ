@@ -9,7 +9,7 @@
  * @subpackage FAQ
  */
 
-class FAQ_Api_User extends Zikula_Api
+class FAQ_Api_User extends Zikula_AbstractApi
 {
     /**
      * get all FAQs
