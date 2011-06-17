@@ -3,7 +3,7 @@
 {include file="faq_admin_menu.htm"}
 {gt text="View FAQ list" assign=templatetitle}
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='core' src='windowlist.gif' set='icons/large' alt=''}</div>
+    <div class="z-adminpageicon">{img modname='core' src='windowlist.png' set='icons/large' alt=''}</div>
     <h2>{$templatetitle}</h2>
     {if $enablecategorization and $numproperties gt 0}
     <form action="{modurl modname=FAQ type=admin func=view}" method="post" enctype="application/x-www-form-urlencoded">
@@ -55,9 +55,9 @@
                 <td>{$faq.question|strip_tags|safehtml|truncate:30}</td>
                 <td>
                     {if $faq.answer neq ''}
-                    {img modname='core' set='icons/extrasmall' src='button_ok.gif'  __alt='Yes'  __title='Yes'}
+                    {img modname='core' set='icons/extrasmall' src='button_ok.png'  __alt='Yes'  __title='Yes'}
                     {else}
-                    {img modname='core' set='icons/extrasmall' src='button_cancel.gif'  __alt='No'  __title='No'}
+                    {img modname='core' set='icons/extrasmall' src='button_cancel.png'  __alt='No'  __title='No'}
                     {/if}
                 </td>
                 {if $enablecategorization}
@@ -76,5 +76,5 @@
             {/foreach}
         </tbody>
     </table>
-    {pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1 img_prev=images/icons/extrasmall/previous.gif img_next=images/icons/extrasmall/next.gif}
+    {pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1 img_prev=images/icons/extrasmall/previous.png img_next=images/icons/extrasmall/next.png}
 </div>

@@ -299,11 +299,11 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
             $options = array();
             if (SecurityUtil::checkPermission( 'FAQ::', "$item[faqid]::", ACCESS_EDIT)) {
                 $options[] = array('url'   => ModUtil::url('FAQ', 'admin', 'modify', array('faqid' => $item['faqid'])),
-                        'image' => 'xedit.gif',
+                        'image' => 'xedit.png',
                         'title' => $this->__('Edit'));
                 if (SecurityUtil::checkPermission( 'FAQ::', "$item[faqid]::", ACCESS_DELETE)) {
                     $options[] = array('url'   => ModUtil::url('FAQ', 'admin', 'delete', array('faqid' => $item['faqid'])),
-                            'image' => '14_layer_deletelayer.gif',
+                            'image' => '14_layer_deletelayer.png',
                             'title' => $this->__('Delete'));
                 }
             }
