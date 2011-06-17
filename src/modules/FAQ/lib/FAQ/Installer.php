@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zikula Application Framework
  *
@@ -8,9 +9,9 @@
  * @package Zikula_Value_Addons
  * @subpackage FAQ
  */
-
 class FAQ_Installer extends Zikula_AbstractInstaller
 {
+
     /**
      * init faq module
      */
@@ -23,19 +24,19 @@ class FAQ_Installer extends Zikula_AbstractInstaller
 
         // set up config variables
         $modvars = array(
-                'itemsperpage' => 25,
-                'enablecategorization' => true,
-                'catmapcount' => true
+            'itemsperpage' => 25,
+            'enablecategorization' => true,
+            'catmapcount' => true
         );
+
+        // set up module variables
+        ModUtil::setVars('FAQ', $modvars);
 
         // create our default category
         if (!$this->_createdefaultcategory()) {
             LogUtil::registerStatus(__('Warning! Could not create the default FAQ category tree. If you want to use categorisation with FAQ, register at least one property for the module in the Category Registry.', $dom));
             $modvars['enablecategorization'] = false;
         }
-
-        // set up module variables
-        ModUtil::setVars('FAQ', $modvars);
 
         // initialisation successful
         return true;
@@ -46,8 +47,7 @@ class FAQ_Installer extends Zikula_AbstractInstaller
      */
     public function upgrade($oldversion)
     {
-        switch ($oldversion)
-        {
+        switch ($oldversion) {
             case '2.0':
             case '2.1':
                 ModUtil::setVar('FAQ', 'enablecategorization', true);
@@ -90,7 +90,6 @@ class FAQ_Installer extends Zikula_AbstractInstaller
         return true;
     }
 
-
     /**
      * migrate old local categories to the categories module
      */
@@ -119,7 +118,8 @@ class FAQ_Installer extends Zikula_AbstractInstaller
         $categorymap = array();
         foreach ($categories as $category) {
             // we'll deal with sub categories on a second pass
-            if ($category[2] != 0) continue;
+            if ($category[2] != 0)
+                continue;
             $cat = new Categories_DBObject_Category ();
             $cat->setDataField('parent_id', $rootcat['id']);
             $cat->setDataField('name', $category[0]);
@@ -136,7 +136,8 @@ class FAQ_Installer extends Zikula_AbstractInstaller
         // migrate our sub categories
         foreach ($categories as $category) {
             // root categories are already done
-            if ($category[2] == 0) continue;
+            if ($category[2] == 0)
+                continue;
             $cat = new Categories_DBObject_Category ();
             $cat->setDataField('parent_id', $categorymap[$category[2]]);
             $cat->setDataField('name', $category[0]);
@@ -156,8 +157,8 @@ class FAQ_Installer extends Zikula_AbstractInstaller
         $pages = array();
         for (; !$result->EOF; $result->MoveNext()) {
             $pages[] = array('faqid' => $result->fields[0],
-                    '__CATEGORIES__' => array('Main' => $categorymap[$result->fields[1]]),
-                    '__META__' => array('module' => 'FAQ'));
+                '__CATEGORIES__' => array('Main' => $categorymap[$result->fields[1]]),
+                '__META__' => array('module' => 'FAQ'));
         }
 
         foreach ($pages as $page) {
@@ -185,7 +186,7 @@ class FAQ_Installer extends Zikula_AbstractInstaller
 
         // get the category path for which we're going to insert our place holder category
         $rootcat = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules');
-        $fCat    = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/FAQ');
+        $fCat = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/FAQ');
 
         if (!$fCat) {
             // create placeholder for all our migrated categories
@@ -217,4 +218,5 @@ class FAQ_Installer extends Zikula_AbstractInstaller
 
         return true;
     }
+
 }

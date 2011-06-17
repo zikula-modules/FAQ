@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zikula Application Framework
  *
@@ -22,37 +23,37 @@
 function FAQ_tables()
 {
     // Initialise table array
-    $pntable = array();
+    $table = array();
 
     // Full table definition
-    $pntable['faqanswer'] = DBUtil::getLimitedTablename('faqanswer');
-    $pntable['faqanswer_column'] = array(
-        'faqid'         => 'pn_id',
-        'question'      => 'pn_question',
-        'urltitle'      => 'pn_urltitle',
-        'answer'        => 'pn_answer',
+    $table['faqanswer'] = DBUtil::getLimitedTablename('faqanswer');
+    $table['faqanswer_column'] = array(
+        'faqid' => 'pn_id',
+        'question' => 'pn_question',
+        'urltitle' => 'pn_urltitle',
+        'answer' => 'pn_answer',
         'submittedbyid' => 'pn_submittedbyid',
-        'answeredbyid'  => 'pn_answeredbyid'
+        'answeredbyid' => 'pn_answeredbyid'
     );
-    $pntable['faqanswer_column_def'] = array(
-        'faqid'           => 'I NOTNULL AUTO PRIMARY',
-        'question'        => 'X DEFAULT NULL',
-        'urltitle'        => "X NOTNULL DEFAULT ''",
-        'answer'          => 'X',
-        'submittedbyid'   => "I NOTNULL DEFAULT ''",
-        'answeredbyid'    => "I NOTNULL DEFAULT ''"
+    $table['faqanswer_column_def'] = array(
+        'faqid' => 'I NOTNULL AUTO PRIMARY',
+        'question' => 'X DEFAULT NULL',
+        'urltitle' => "X NOTNULL DEFAULT ''",
+        'answer' => 'X',
+        'submittedbyid' => "I NOTNULL DEFAULT ''",
+        'answeredbyid' => "I NOTNULL DEFAULT ''"
     );
 
     // Enable categorization services
-    $pntable['faqanswer_db_extra_enable_categorization'] = ModUtil::getVar('FAQ', 'enablecategorization');
-    $pntable['faqanswer_primary_key_column'] = 'faqid';
+    $table['faqanswer_db_extra_enable_categorization'] = ModUtil::getVar('FAQ', 'enablecategorization');
+    $table['faqanswer_primary_key_column'] = 'faqid';
 
     // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition($pntable['faqanswer_column'], 'pn_');
-    ObjectUtil::addStandardFieldsToTableDataDefinition($pntable['faqanswer_column_def']);
+    ObjectUtil::addStandardFieldsToTableDefinition($table['faqanswer_column'], 'pn_');
+    ObjectUtil::addStandardFieldsToTableDataDefinition($table['faqanswer_column_def']);
 
     // old tables for upgrade purposes
-    $pntable['faqcategories'] = DBUtil::getLimitedTablename('faqcategories');
+    $table['faqcategories'] = DBUtil::getLimitedTablename('faqcategories');
 
-    return $pntable;
+    return $table;
 }
