@@ -23,9 +23,9 @@
                     <input id="faq_addcategorytitletopermalink" type="checkbox" name="addcategorytitletopermalink"{if $modvars.FAQ.addcategorytitletopermalink} checked="checked"{/if} />
                 </div>
             </fieldset>
-            <div class="z-formbuttons">
-                {button src='button_ok.png' set='icons/small' __alt="Update Configuration" __title="Update Configuration"}
-                <a href="{modurl modname='FAQ' type='admin' func='view'}">{img modname='core' src='button_cancel.png' set='icons/small'   __alt="Cancel" __title="Cancel"}</a>
+            <div class="z-buttons z-formbuttons">
+                {button src="button_ok.png" set="icons/extrasmall" __alt="Update" __title="Update" __text="Update"}
+                <a href="{modurl modname="FAQ" type="admin" func='view'}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
             </div>
         </div>
     </form>

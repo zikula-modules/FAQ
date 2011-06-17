@@ -64,9 +64,9 @@
                 </ul>
             </fieldset>
             {* modcallhooks hookobject=item hookaction=modify hookid=$faqid module=FAQ *}
-            <div class="z-formbuttons">
-                {button src='button_ok.png' set='icons/small' __alt="Update" __title="Update"}
-                <a href="{modurl modname='FAQ' type='admin 'func='view'}">{img modname='core' src='button_cancel.png' set='icons/small'   __alt="Cancel" __title="Cancel"}</a>
+            <div class="z-buttons z-formbuttons">
+                {button src="button_ok.png" set="icons/extrasmall" __alt="Update" __title="Update" __text="Update"}
+                <a href="{modurl modname="FAQ" type="admin" func='view'}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
             </div>
         </div>
     </form>

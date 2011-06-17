@@ -11,9 +11,9 @@
             <input type="hidden" name="faqid" value="{$faqid|safetext}" />
             <fieldset>
                 <legend>{gt text="Confirmation prompt"}</legend>
-                <div class="z-formbuttons">
-                    {button src='button_ok.png' set='icons/small' __alt="Confirm deletion?" __title="Confirm deletion?"}
-                    <a href="{modurl modname='FAQ' type='admin' func='view'}">{img modname='core' src='button_cancel.png' set='icons/small'   __alt="Cancel" __title="Cancel"}</a>
+                <div class="z-buttons z-formbuttons">
+                    {button src="button_ok.png" set="icons/extrasmall" __alt="Confirm deletion?" __title="Confirm deletion?" __text="Confirm deletion?"}
+                    <a href="{modurl modname="FAQ" type="admin" func='view'}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
                 </div>
             </fieldset>
         </div>

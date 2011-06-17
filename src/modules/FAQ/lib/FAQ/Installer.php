@@ -26,7 +26,8 @@ class FAQ_Installer extends Zikula_AbstractInstaller
         $modvars = array(
             'itemsperpage' => 25,
             'enablecategorization' => true,
-            'catmapcount' => true
+            'catmapcount' => true,
+            'addcategorytitletopermalink' => false,
         );
 
         // set up module variables
