@@ -15,7 +15,7 @@ class FAQ_Installer extends Zikula_AbstractInstaller
     /**
      * init faq module
      */
-    public function init()
+    public function install()
     {
         // create table
         if (!DBUtil::createTable('faqanswer')) {
@@ -71,7 +71,7 @@ class FAQ_Installer extends Zikula_AbstractInstaller
     /**
      * delete the faq module
      */
-    public function delete()
+    public function uninstall()
     {
         // drop ytable
         if (!DBUtil::dropTable('faqanswer')) {
