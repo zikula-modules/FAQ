@@ -60,7 +60,7 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
         }
 
         // Let any hooks know that we have created a new item
-        $this->callHooks('item', 'create', $faq['faqid'], array('module' => 'FAQ'));
+//        $this->callHooks('item', 'create', $faq['faqid'], array('module' => 'FAQ'));
 
         // Return the id of the newly created item to the calling process
         return $faq['faqid'];
@@ -96,7 +96,7 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
         }
 
         // Let any hooks know that we have deleted an item
-        $this->callHooks('item', 'delete', $args['faqid'], array('module' => 'FAQ'));
+//        $this->callHooks('item', 'delete', $args['faqid'], array('module' => 'FAQ'));
 
         // The item has been deleted, so we clear all cached pages of this item.
         $this->view->clear_cache(null, $args['faqid']);
@@ -158,7 +158,7 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
         $this->view->clear_cache(null, $faq['faqid']);
 
         // Let any hooks know that we have updated an item
-        $this->callHooks('item', 'update', $faq['faqid'], array('module' => 'FAQ'));
+//        $this->callHooks('item', 'update', $faq['faqid'], array('module' => 'FAQ'));
 
         return true;
     }

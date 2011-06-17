@@ -1,10 +1,10 @@
 {include file="user/menu.tpl"}
 
 <h2>{gt text="Question"}</h2>
-<p><strong>{$question|modcallhooks|safehtml}</strong></p>
+<p><strong>{$question|safehtml}{* $question|modcallhooks|safehtml *}</strong></p>
 
 <h2>{gt text="Answer"}</h2>
-<p>{$answer|modcallhooks|safehtml}</p>
+<p>{$answer|safehtml}{* $answer|modcallhooks|safehtml *}</p>
 <div style="border-top: 1px dashed #AAA">
     <ul>
         {if $submittedby neq ''}
