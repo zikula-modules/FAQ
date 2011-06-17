@@ -25,7 +25,7 @@
             </fieldset>
             <div class="z-formbuttons">
                 {button src='button_ok.png' set='icons/small' __alt="Update Configuration" __title="Update Configuration"}
-                <a href="{modurl modname=FAQ type=admin func=view}">{img modname='core' src='button_cancel.png' set='icons/small'   __alt="Cancel" __title="Cancel"}</a>
+                <a href="{modurl modname='FAQ' type='admin' func='view'}">{img modname='core' src='button_cancel.png' set='icons/small'   __alt="Cancel" __title="Cancel"}</a>
             </div>
         </div>
     </form>

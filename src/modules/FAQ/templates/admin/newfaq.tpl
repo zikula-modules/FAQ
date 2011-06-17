@@ -36,7 +36,7 @@
             {* modcallhooks hookobject=item hookaction=new module=FAQ *}
             <div class="z-formbuttons">
                 {button src='button_ok.png' set='icons/small' __alt="Create" __title="Create"}
-                <a href="{modurl modname=FAQ type=admin func=view}">{img modname='core' src='button_cancel.png' set='icons/small'   __alt="Cancel" __title="Cancel"}</a>
+                <a href="{modurl modname='FAQ' type='admin' func='view'}">{img modname='core' src='button_cancel.png' set='icons/small'   __alt="Cancel" __title="Cancel"}</a>
             </div>
         </div>
     </form>

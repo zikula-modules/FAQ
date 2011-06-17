@@ -22,5 +22,5 @@
     </ul>
 </div>
 
-{modurl modname=FAQ func=display faqid=$faqid assign=returnurl}
+{modurl modname='FAQ' type='user' func='display' faqid=$faqid assign='returnurl'}
 {* modcallhooks hookobject=item hookaction=display hookid=$faqid module=FAQ returnurl=$returnurl *}

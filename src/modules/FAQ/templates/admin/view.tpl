@@ -1,4 +1,4 @@
-{ajaxheader modname=FAQ filename=faq.js nobehaviour=true noscriptaculous=true}
+{ajaxheader modname='FAQ' filename='faq.js' nobehaviour=true noscriptaculous=true}
 {include file="admin/menu.tpl"}
 {gt text="View FAQ list" assign=templatetitle}
 <div class="z-admincontainer">
@@ -48,7 +48,7 @@
             </tr>
         </thead>
         <tbody>
-            {foreach from=$faqs item=faq}
+            {foreach from=$faqs item='faq'}
             <tr class="{cycle values="z-odd,z-even"}">
                 <td>{$faq.faqid|safehtml}</td>
                 <td>{$faq.question|strip_tags|safehtml|truncate:30}</td>
@@ -65,7 +65,7 @@
                 </td>
                 {/if}
                 <td>
-                    {foreach item=option from=$faq.options}
+                    {foreach item='option' from=$faq.options}
                     <a href="{$option.url|safetext}">{img modname='core' set='icons/extrasmall' src=$option.image title=$option.title alt=$option.title}</a>
                     {/foreach}
                 </td>
@@ -75,5 +75,5 @@
             {/foreach}
         </tbody>
     </table>
-    {pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1 img_prev=images/icons/extrasmall/previous.png img_next=images/icons/extrasmall/next.png}
+    {pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar='startnum' shift=1}
 </div>

@@ -13,7 +13,7 @@
 
 {/if}
 
-{modurl modname=FAQ func=view prop=$property startnum=$startnum assign=returnurl}
+{modurl modname=FAQ type='user' func='view' prop=$property startnum=$startnum assign='returnurl'}
 
 <h3>{gt text="Question"}</h3>
 <ul>
@@ -23,7 +23,7 @@
 </ul>
 
 <h3>{gt text="Answer"}</h3>
-{foreach item=item from=$items}
+{foreach item='item' from=$items}
 {$item}
 {/foreach}
-{pager  show="page" rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1}
+{pager  show="page" rowcount=$pager.numitems limit=$pager.itemsperpage posvar='startnum' shift=1}

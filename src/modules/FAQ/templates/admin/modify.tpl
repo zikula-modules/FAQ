@@ -45,28 +45,28 @@
                 <legend>{gt text="Meta data"}</legend>
                 <ul>
                     {if $submittedbyid neq 0}
-                    {usergetvar name=uname uid=$submittedbyid assign=submittedby}
+                    {usergetvar name='uname' uid=$submittedbyid assign='submittedby'}
                     {/if}
-                    {capture assign=faqsubmittedby}{$submittedby|userprofilelink}{/capture}
+                    {capture assign='faqsubmittedby'}{$submittedby|userprofilelink}{/capture}
                     <li>{gt text="Submitted by %s" tag1=$faqsubmittedby}</li>
 
-                    {usergetvar name=uname uid=$answeredbyid assign=uname}
-                    {capture assign=faqansweredby}{$uname|userprofilelink}{/capture}
+                    {usergetvar name='uname' uid=$answeredbyid assign='uname'}
+                    {capture assign='faqansweredby'}{$uname|userprofilelink}{/capture}
                     <li>{gt text="Answered by %s" tag1=$faqansweredby}</li>
 
-                    {usergetvar name=uname uid=$cr_uid assign=uname}
-                    {capture assign=faqcreatedby}{$uname|userprofilelink}{/capture}
+                    {usergetvar name='uname' uid=$cr_uid assign='uname'}
+                    {capture assign='faqcreatedby'}{$uname|userprofilelink}{/capture}
                     <li>{gt text='Created by %1$s on %2$s' tag1=$faqcreatedby tag2=$cr_date|dateformat:'datetimelong'}</li>
 
-                    {usergetvar name=uname uid=$lu_uid assign=uname}
-                    {capture assign=faqupdatedby}{$uname|userprofilelink}{/capture}
+                    {usergetvar name='uname' uid=$lu_uid assign='uname'}
+                    {capture assign='faqupdatedby'}{$uname|userprofilelink}{/capture}
                     <li>{gt text='Updated by %1$s on %2$s' tag1=$faqupdatedby tag2=$lu_date|dateformat:'datetimelong'}</li>
                 </ul>
             </fieldset>
-            {modcallhooks hookobject=item hookaction=modify hookid=$faqid module=FAQ}
+            {* modcallhooks hookobject=item hookaction=modify hookid=$faqid module=FAQ *}
             <div class="z-formbuttons">
                 {button src='button_ok.png' set='icons/small' __alt="Update" __title="Update"}
-                <a href="{modurl modname=FAQ type=admin func=view}">{img modname='core' src='button_cancel.png' set='icons/small'   __alt="Cancel" __title="Cancel"}</a>
+                <a href="{modurl modname='FAQ' type='admin 'func='view'}">{img modname='core' src='button_cancel.png' set='icons/small'   __alt="Cancel" __title="Cancel"}</a>
             </div>
         </div>
     </form>

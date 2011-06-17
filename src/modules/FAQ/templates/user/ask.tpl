@@ -1,7 +1,7 @@
 {include file="user/menu.tpl"}
 <h2>{gt text="Submit a question"}</h2>
 <p class="z-informationmsg">{gt text="Before submitting a question please check existing FAQ's as your question may have already been answered. If not then please submit your question via the form and below. Please use clear and precise language when submitting a question. After submission your question will be reviewed by the site editor(s)."}</p>
-<form class="z-form z-linear" action="{modurl modname="FAQ" func="create"}" method="post" enctype="application/x-www-form-urlencoded">
+<form class="z-form z-linear" action="{modurl modname="FAQ" type='user' func="create"}" method="post" enctype="application/x-www-form-urlencoded">
     <div>
         <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
         <fieldset>
