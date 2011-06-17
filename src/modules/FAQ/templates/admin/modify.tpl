@@ -1,4 +1,4 @@
-{include file="faq_admin_menu.htm"}
+{include file="admin/menu.tpl"}
 {gt text="Update FAQ" assign=templatetitle}
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname='core' src='edit.png' set='icons/large' alt=''}</div>

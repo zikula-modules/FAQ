@@ -1,5 +1,5 @@
 {if $func eq 'view' and $category}
-{include file="faq_user_menu.htm"}
+{include file="user/menu.tpl"}
 {array_field_isset assign="categoryname" array=$category.display_name field=$lang returnValue=1}
 {if $categoryname eq ''}{assign var="categoryname" value=$category.name}{/if}
 {array_field_isset assign="categorydesc" array=$category.display_desc field=$lang returnValue=1}

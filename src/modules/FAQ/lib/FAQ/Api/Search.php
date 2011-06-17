@@ -28,7 +28,7 @@ class FAQ_Api_Search extends Zikula_AbstractApi
         if (SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_READ)) {
             $render = Zikula_View::getInstance('FAQ');
             $render->assign('active',(isset($args['active'])&&isset($args['active']['FAQ']))||(!isset($args['active'])));
-            return $render->fetch('faq_search_options.htm');
+            return $render->fetch('search/options.tpl');
         }
 
         return '';

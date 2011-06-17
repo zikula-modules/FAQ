@@ -1,5 +1,5 @@
 {gt text="Delete FAQ" assign=templatetitle}
-{include file="faq_admin_menu.htm"}
+{include file="admin/menu.tpl"}
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname='core' src='editdelete.png' set='icons/large' alt=$templatetitle}</div>
     <h2>{$templatetitle}</h2>

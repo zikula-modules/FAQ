@@ -1,4 +1,4 @@
-{include file="faq_user_menu.htm"}
+{include file="user/menu.tpl"}
 {if $categories}
 <h2>{gt text="Categories"}</h2>
 {foreach from=$categories key=property item=category}

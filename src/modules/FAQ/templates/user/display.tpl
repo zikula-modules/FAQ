@@ -1,4 +1,4 @@
-{include file="faq_user_menu.htm"}
+{include file="user/menu.tpl"}
 
 <h2>{gt text="Question"}</h2>
 <p><strong>{$question|modcallhooks|safehtml}</strong></p>
