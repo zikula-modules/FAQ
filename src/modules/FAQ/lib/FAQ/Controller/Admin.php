@@ -35,10 +35,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
      */
     public function newfaq()
     {
-        // Security check
-        if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_ADD)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADD), LogUtil::getErrorMsgPermission());
 
         // Get the module vars
         $modvars = ModUtil::getVar('FAQ');
@@ -104,10 +101,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
             $faqid = $objectid;
         }
 
-        // Security check
-        if (!SecurityUtil::checkPermission('FAQ::', "$faqid::", ACCESS_EDIT)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('FAQ::', "$faqid::", ACCESS_EDIT), LogUtil::getErrorMsgPermission());
 
         $item = ModUtil::apiFunc('FAQ', 'user', 'get', array('faqid' => $faqid));
         if (!$item) {
@@ -185,10 +179,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
             return LogUtil::registerError($this->__('No such item found.'), 404);
         }
 
-        // Security check
-        if (!SecurityUtil::checkPermission( 'FAQ::', "$faqid::", ACCESS_DELETE)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('FAQ::', "$faqid::", ACCESS_DELETE), LogUtil::getErrorMsgPermission());
 
         // Check for confirmation.
         if (empty($confirmation)) {
@@ -229,10 +220,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
      */
     public function view($args)
     {
-        // Security check
-        if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_EDIT)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('FAQ::', '::', ACCESS_EDIT), LogUtil::getErrorMsgPermission());
 
         $startnum = FormUtil::getPassedValue('startnum', isset($args['startnum']) ? $args['startnum'] : null, 'GET');
         $property = FormUtil::getPassedValue('faq_property', isset($args['faq_property']) ? $args['faq_property'] : null, 'POST');
@@ -340,10 +328,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
      */
     public function modifyconfig()
     {
-        // Security check
-        if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_ADMIN)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADMIN), LogUtil::getErrorMsgPermission());
 
         // Assign all module vars
         $this->view->assign(ModUtil::getVar('FAQ'));
@@ -364,10 +349,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
      */
     public function updateconfig()
     {
-        // Security check
-        if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_ADMIN)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADMIN), LogUtil::getErrorMsgPermission());
 
         // Confirm authorisation code
         if (!SecurityUtil::confirmAuthKey()) {

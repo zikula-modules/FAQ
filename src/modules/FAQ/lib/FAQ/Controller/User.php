@@ -25,10 +25,7 @@ class FAQ_Controller_User extends Zikula_AbstractController
      */
     public function main()
     {
-        // Security check
-        if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_OVERVIEW)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('FAQ::', '::', ACCESS_OVERVIEW), LogUtil::getErrorMsgPermission());
 
         // load the categories system
         if (ModUtil::getVar('FAQ', 'enablecategorization')) {
@@ -67,10 +64,7 @@ class FAQ_Controller_User extends Zikula_AbstractController
      */
     public function view($args)
     {
-        // Security check
-        if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_OVERVIEW)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('FAQ::', '::', ACCESS_OVERVIEW), LogUtil::getErrorMsgPermission());
 
         $startnum = isset($args['startnum']) ? $args['startnum'] : (int)FormUtil::getPassedValue('startnum', 1, 'GET');
         $cat      = isset($args['cat']) ? $args['cat'] : (string)FormUtil::getPassedValue('cat', null, 'GET');
@@ -237,10 +231,7 @@ class FAQ_Controller_User extends Zikula_AbstractController
      */
     public function ask()
     {
-        // Security check
-        if (!SecurityUtil::checkPermission( 'FAQ::', '::', ACCESS_COMMENT)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('FAQ::', '::', ACCESS_COMMENT), LogUtil::getErrorMsgPermission());
 
         // assign logged in state
         $this->view->assign('loggedin', UserUtil::isLoggedIn());
