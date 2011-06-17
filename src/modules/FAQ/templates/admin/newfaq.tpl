@@ -5,7 +5,7 @@
     <h2>{gt text="$templatetitle"}</h2>
     <form id="faq_admin_newform" class="z-form z-linear" action="{modurl modname="FAQ" type="admin" func="create"}" method="post" enctype="application/x-www-form-urlencoded">
         <div>
-            <input type="hidden" name="authid" value="{insert name="generateauthkey" module="FAQ"}" />
+            <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
             <fieldset>
                 <legend>{gt text="$templatetitle"}</legend>
                 <div class="z-formrow">
@@ -21,7 +21,7 @@
                     <label for="faqanswer">{gt text="Answer"}</label>
                     <textarea id="faqanswer" name="faq[answer]" rows="10" cols="50"></textarea>
                 </div>
-                {if $enablecategorization}
+                {if $modvars.FAQ.enablecategorization}
                 <div class="z-formrow">
                     <label>{gt text="Category"}</label>
                     {gt text='Choose a category' assign='lblDef'}
@@ -33,7 +33,7 @@
                 </div>
                 {/if}
             </fieldset>
-            {modcallhooks hookobject=item hookaction=new module=FAQ}
+            {* modcallhooks hookobject=item hookaction=new module=FAQ *}
             <div class="z-formbuttons">
                 {button src='button_ok.png' set='icons/small' __alt="Create" __title="Create"}
                 <a href="{modurl modname=FAQ type=admin func=view}">{img modname='core' src='button_cancel.png' set='icons/small'   __alt="Cancel" __title="Cancel"}</a>

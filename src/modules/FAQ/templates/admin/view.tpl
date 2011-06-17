@@ -4,7 +4,7 @@
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname='core' src='windowlist.png' set='icons/large' alt=''}</div>
     <h2>{$templatetitle}</h2>
-    {if $enablecategorization and $numproperties gt 0}
+    {if $modvars.FAQ.enablecategorization and $numproperties gt 0}
     <form action="{modurl modname=FAQ type=admin func=view}" method="post" enctype="application/x-www-form-urlencoded">
         <div id="faq_multicategory_filter">
             <label for="faq_property">{gt text="Category"}</label>
@@ -41,7 +41,7 @@
                 <th>{gt text="Internal ID"}</th>
                 <th>{gt text="Question"}</th>
                 <th>{gt text="Answered"}</th>
-                {if $enablecategorization}
+                {if $modvars.FAQ.enablecategorization}
                 <th>{gt text="Category"}</th>
                 {/if}
                 <th>{gt text="Options"}</th>
@@ -59,7 +59,7 @@
                     {img modname='core' set='icons/extrasmall' src='button_cancel.png'  __alt='No'  __title='No'}
                     {/if}
                 </td>
-                {if $enablecategorization}
+                {if $modvars.FAQ.enablecategorization}
                 <td>
                     {assignedcategorieslist item=$faq}
                 </td>

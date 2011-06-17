@@ -5,7 +5,7 @@
     <h2>{$templatetitle}</h2>
     <form id="faq_admin_modifyform" class="z-form z-linear" action="{modurl modname="FAQ" type="admin" func="update"}" method="post" enctype="application/x-www-form-urlencoded">
         <div>
-            <input type="hidden" name="authid" value="{insert name="generateauthkey" module="FAQ"}" />
+            <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
             <input type="hidden" name="faq[faqid]" value="{$faqid|safetext}" />
             <input type="hidden" name="faq[submittedbyid]" value="{$submittedbyid|safetext}" />
             <fieldset>
@@ -23,15 +23,15 @@
                     <label for="faqanswer">{gt text="Answer"}</label>
                     <textarea id="faqanswer" name="faq[answer]" rows="10" cols="50">{$answer|safetext}</textarea>
                 </div>
-                {if $enablecategorization}
+                {if $modvars.FAQ.enablecategorization}
                 <div class="z-formrow">
                     <label>{gt text="Category"}</label>
                     {gt text='Choose a category' assign='lblDef'}
                     {nocache}
                     {foreach from=$categories key=property item=category}
-                    {array_field_isset array=$__CATEGORIES__ field=$property assign="catExists"}
+                    {array_field array=$__CATEGORIES__ field=$property assign="catExists"}
                     {if $catExists}
-                    {array_field_isset array=$__CATEGORIES__.$property field="id" returnValue=1 assign="selectedValue"}
+                    {array_field array=$__CATEGORIES__.$property field="id" assign="selectedValue"}
                     {else}
                     {assign var="selectedValue" value="0"}
                     {/if}
