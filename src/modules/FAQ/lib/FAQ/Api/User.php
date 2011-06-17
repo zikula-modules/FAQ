@@ -266,7 +266,7 @@ class FAQ_Api_User extends Zikula_AbstractApi
     {
         return array('viewfunc'    => 'view',
                 'displayfunc' => 'display',
-                'newfunc'     => 'new',
+                'newfunc'     => 'newfaq',
                 'createfunc'  => 'create',
                 'modifyfunc'  => 'modify',
                 'updatefunc'  => 'update',
