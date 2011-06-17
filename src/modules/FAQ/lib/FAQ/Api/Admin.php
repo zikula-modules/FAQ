@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zikula Application Framework
  *
@@ -8,9 +9,9 @@
  * @package Zikula_Value_Addons
  * @subpackage FAQ
  */
-
 class FAQ_Api_Admin extends Zikula_AbstractApi
 {
+
     /**
      * create a new FAQ
      *
@@ -86,7 +87,7 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
         }
 
         // Security check
-        if (!SecurityUtil::checkPermission( 'FAQ::', "$args[faqid]::", ACCESS_DELETE)) {
+        if (!SecurityUtil::checkPermission('FAQ::', "$args[faqid]::", ACCESS_DELETE)) {
             return LogUtil::registerPermissionError();
         }
 
@@ -145,7 +146,7 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
         }
 
         // Security check.
-        if (!SecurityUtil::checkPermission( 'FAQ::', "$faq[faqid]::", ACCESS_EDIT)) {
+        if (!SecurityUtil::checkPermission('FAQ::', "$faq[faqid]::", ACCESS_EDIT)) {
             return LogUtil::registerPermissionError();
         }
 
@@ -164,7 +165,6 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
 
     /**
      * Purge the permalink fields in the FAQ table
-     * @author Mateo Tibaquira
      * @return bool true on success, false on failure
      */
     public function purgepermalinks($args)
@@ -214,7 +214,6 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
     /**
      * get available admin panel links
      *
-     * @author Mark West
      * @return array array of admin links
      */
     public function getlinks()
@@ -223,20 +222,25 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
 
         if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_READ)) {
             $links[] = array('url' => ModUtil::url('FAQ', 'admin', 'view'),
-                    'text' => $this->__('View FAQ list'));
+                'text' => $this->__('View FAQ list'),
+                'class' => 'z-icon-es-view');
         }
         if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADD)) {
             $links[] = array('url' => ModUtil::url('FAQ', 'admin', 'newfaq'),
-                    'text' => $this->__('Create a FAQ'));
+                'text' => $this->__('Create a FAQ'),
+                'class' => 'z-icon-es-new');
         }
         if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_ADMIN)) {
             $links[] = array('url' => ModUtil::url('FAQ', 'admin', 'view', array('purge' => 1)),
-                    'text' => $this->__('Purge PermaLinks'));
+                'text' => $this->__('Purge PermaLinks'),
+                'class' => 'z-icon-es-regenerate');
 
             $links[] = array('url' => ModUtil::url('FAQ', 'admin', 'modifyconfig'),
-                    'text' => $this->__('Settings'));
+                'text' => $this->__('Settings'),
+                'class' => 'z-icon-es-config');
         }
 
         return $links;
     }
+
 }

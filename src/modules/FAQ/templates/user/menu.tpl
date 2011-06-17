@@ -1,10 +1,7 @@
 {insert name="getstatusmsg"}
-<h2>{gt text="FAQs"}</h2>
-<div class="z-menu">
-    <span class="z-menuitem-title">
-        [
-        <a href="{modurl modname="FAQ"}">{gt text="View FAQ list"}</a> |
-        <a href="{modurl modname="FAQ" func="ask"}">{gt text="Submit a question"}</a>
-        ]
-    </span>
+
+<div class="z-adminbox">
+    {img modname='FAQ' src='admin.png'}
+    <h1>{gt text='FAQ'}</h1>
+    {modulelinks modname='FAQ' type='user'}
 </div>

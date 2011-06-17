@@ -274,4 +274,27 @@ class FAQ_Api_User extends Zikula_AbstractApi
                 'titlefield'  => 'question',
                 'itemid'      => 'faqid');
     }
+
+    /**
+     * get available admin panel links
+     *
+     * @return array array of admin links
+     */
+    public function getlinks()
+    {
+        $links = array();
+
+        if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_OVERVIEW)) {
+            $links[] = array('url' => ModUtil::url('FAQ', 'user', 'main'),
+                'text' => $this->__('View FAQ list'),
+                'class' => 'z-icon-es-view');
+        }
+        if (SecurityUtil::checkPermission('FAQ::', '::', ACCESS_COMMENT)) {
+            $links[] = array('url' => ModUtil::url('FAQ', 'user', 'ask'),
+                'text' => $this->__('Submit a question'),
+                'class' => 'z-icon-es-new');
+        }
+
+        return $links;
+    }
 }

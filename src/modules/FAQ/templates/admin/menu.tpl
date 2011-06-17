@@ -1,5 +1,7 @@
 {admincategorymenu}
+
 <div class="z-adminbox">
-    <h1>{gt text="FAQs"}</h1>
-    <div class="z-menu">{moduleadminlinks modname=FAQ}</div>
+    {img modname='FAQ' src='admin.png'}
+    <h1>{gt text='FAQ'}</h1>
+    {modulelinks modname='FAQ' type='admin'}
 </div>
