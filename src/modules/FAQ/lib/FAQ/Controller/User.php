@@ -281,6 +281,6 @@ class FAQ_Controller_User extends Zikula_AbstractController
             LogUtil::registerStatus($this->__('Thank you for your question'));
         }
 
-        return System::redirect(ModUtil::url('FAQ', 'user', 'view'));
+        $this->redirect(ModUtil::url('FAQ', 'user', 'view'));
     }
 }

@@ -84,7 +84,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
             LogUtil::registerStatus($this->__('Done! Item created.'));
         }
 
-        return System::redirect(ModUtil::url('FAQ', 'admin', 'view'));
+        $this->redirect(ModUtil::url('FAQ', 'admin', 'view'));
     }
 
     /**
@@ -157,7 +157,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
             LogUtil::registerStatus($this->__('Done! Item updated.'));
         }
 
-        return System::redirect(ModUtil::url('FAQ', 'admin', 'view'));
+        $this->redirect(ModUtil::url('FAQ', 'admin', 'view'));
     }
 
     /**
@@ -214,7 +214,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
             LogUtil::registerStatus($this->__('Done! Item deleted.'));
         }
 
-        return System::redirect(ModUtil::url('FAQ', 'admin', 'view'));
+        $this->redirect(ModUtil::url('FAQ', 'admin', 'view'));
     }
 
     /**
@@ -393,6 +393,6 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
         // the module configuration has been updated successfuly
         LogUtil::registerStatus($this->__('Done! Module configuration updated.'));
 
-        return System::redirect(ModUtil::url('FAQ', 'admin', 'view'));
+        $this->redirect(ModUtil::url('FAQ', 'admin', 'view'));
     }
 }
