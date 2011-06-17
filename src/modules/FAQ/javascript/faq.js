@@ -1,7 +1,3 @@
-/*
- *  $Id$ 
- */
- 
 /**
  * create the onload function to enable the respective functions
  *
