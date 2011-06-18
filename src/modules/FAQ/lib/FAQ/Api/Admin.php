@@ -98,9 +98,6 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
         // Let any hooks know that we have deleted an item
 //        $this->callHooks('item', 'delete', $args['faqid'], array('module' => 'FAQ'));
 
-        // The item has been deleted, so we clear all cached pages of this item.
-        $this->view->clear_cache(null, $args['faqid']);
-
         return true;
     }
 
@@ -153,9 +150,6 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
         if (!DBUtil::updateObject($faq, 'faqanswer', '', 'faqid')) {
             return LogUtil::registerError($this->__('Error! Update attempt failed.'));
         }
-
-        // The item has been modified, so we clear all cached pages of this item.
-        $this->view->clear_cache(null, $faq['faqid']);
 
         // Let any hooks know that we have updated an item
 //        $this->callHooks('item', 'update', $faq['faqid'], array('module' => 'FAQ'));

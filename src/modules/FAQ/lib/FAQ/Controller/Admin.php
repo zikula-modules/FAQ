@@ -71,6 +71,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
         if ($faqid != false) {
             // Success
             LogUtil::registerStatus($this->__('Done! Item created.'));
+            $this->view->clear_cache();
         }
 
         $this->redirect(ModUtil::url('FAQ', 'admin', 'view'));
@@ -134,6 +135,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
         if (ModUtil::apiFunc('FAQ', 'admin', 'update', $faq)) {
             // Success
             LogUtil::registerStatus($this->__('Done! Item updated.'));
+            $this->view->clear_cache();
         }
 
         $this->redirect(ModUtil::url('FAQ', 'admin', 'view'));
@@ -184,6 +186,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
         if (ModUtil::apiFunc('FAQ', 'admin', 'delete', array('faqid' => $faqid))) {
             // Success
             LogUtil::registerStatus($this->__('Done! Item deleted.'));
+            $this->view->clear_cache();
         }
 
         $this->redirect(ModUtil::url('FAQ', 'admin', 'view'));
@@ -334,7 +337,7 @@ class FAQ_Controller_Admin extends Zikula_AbstractController
         $this->setVars($vars);
 
         // The configuration has been changed, so we clear all caches for this module.
-        $this->view->clear_all_cache();
+        $this->view->clear_cache();
 
         // the module configuration has been updated successfuly
         LogUtil::registerStatus($this->__('Done! Module configuration updated.'));
