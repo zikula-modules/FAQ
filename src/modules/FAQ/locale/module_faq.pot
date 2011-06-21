@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Zikula component\n"
+"Project-Id-Version: Zikula 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-20 02:30-0500\n"
+"POT-Creation-Date: 2011-06-21 20:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,275 +16,266 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: pnuserapi.php:73 pnsearchapi.php:67 pnsearchapi.php:98
+#: lib/FAQ/Api/User.php:72 lib/FAQ/Api/Search.php:66 lib/FAQ/Api/Search.php:97
 msgid "Error! Could not load items."
 msgstr ""
 
-#: pnuserapi.php:80 pnadmin.php:57 pnadmin.php:136 pnadmin.php:282
-#: pnuser.php:39 pnuser.php:97
-msgid "Error! Unable to load class [%s%]"
+#: lib/FAQ/Api/User.php:289 lib/FAQ/Api/Admin.php:219
+#: templates/admin/view.tpl:3
+msgid "View FAQ list"
 msgstr ""
 
-#: pnadmin.php:95
-msgid "Done! Item created."
+#: lib/FAQ/Api/User.php:294 templates/user/ask.tpl:2 templates/user/ask.tpl:8
+msgid "Submit a question"
 msgstr ""
 
-#: pnadmin.php:125 pnadmin.php:201 pnadminapi.php:88 pnadminapi.php:150
+#: lib/FAQ/Api/Admin.php:59
+msgid "Error! Creation attempt failed."
+msgstr ""
+
+#: lib/FAQ/Api/Admin.php:86 lib/FAQ/Api/Admin.php:142
+#: lib/FAQ/Controller/Admin.php:100 lib/FAQ/Controller/Admin.php:165
 msgid "No such item found."
 msgstr ""
 
-#: pnadmin.php:173
-msgid "Done! Item updated."
+#: lib/FAQ/Api/Admin.php:95
+msgid "Error! Deletion attempt failed."
 msgstr ""
 
-#: pnadmin.php:233
-msgid "Done! Item deleted."
+#: lib/FAQ/Api/Admin.php:151 lib/FAQ/Installer.php:58
+#: lib/FAQ/Installer.php:167
+msgid "Error! Update attempt failed."
 msgstr ""
 
-#: pnadmin.php:265
-msgid "Purging of the pemalinks was successful"
+#: lib/FAQ/Api/Admin.php:224 templates/admin/newfaq.tpl:2
+msgid "Create a FAQ"
 msgstr ""
 
-#: pnadmin.php:267
-msgid "Purging of the pemalinks has failed"
+#: lib/FAQ/Api/Admin.php:229
+msgid "Purge PermaLinks"
 msgstr ""
 
-#: pnadmin.php:316
-msgid "Edit"
+#: lib/FAQ/Api/Admin.php:233 templates/admin/modifyconfig.tpl:3
+#: templates/admin/modifyconfig.tpl:4
+msgid "Settings"
 msgstr ""
 
-#: pnadmin.php:320
-msgid "Delete"
-msgstr ""
-
-#: pnadmin.php:423
-msgid "Done! Module configuration updated."
-msgstr ""
-
-#: pnversion.php:16 pninit.php:213
-msgid "FAQ"
-msgstr ""
-
-#: pnversion.php:17 pninit.php:214
-msgid "Frequently Asked Questions"
-msgstr ""
-
-#. ! this defines the module's url
-#: pnversion.php:20
-msgid "faq"
-msgstr ""
-
-#: pninit.php:34
+#: lib/FAQ/Installer.php:38
 msgid ""
 "Warning! Could not create the default FAQ category tree. If you want to use "
 "categorisation with FAQ, register at least one property for the module in "
 "the Category Registry."
 msgstr ""
 
-#: pninit.php:61 pninit.php:176 pnadminapi.php:159
-msgid "Error! Update attempt failed."
+#: lib/FAQ/Installer.php:197 lib/FAQ/Version.php:18 templates/admin/menu.tpl:5
+#: templates/user/menu.tpl:4
+msgid "FAQ"
 msgstr ""
 
-#: pnadminapi.php:59
-msgid "Error! Creation attempt failed."
+#: lib/FAQ/Installer.php:198 lib/FAQ/Version.php:19
+msgid "Frequently Asked Questions"
 msgstr ""
 
-#: pnadminapi.php:97
-msgid "Error! Deletion attempt failed."
+#: lib/FAQ/Controller/User.php:32 lib/FAQ/Controller/User.php:81
+#: lib/FAQ/Controller/Admin.php:44 lib/FAQ/Controller/Admin.php:108
+#: lib/FAQ/Controller/Admin.php:233
+msgid "Error! Unable to load class [%s%]"
 msgstr ""
 
-#: pnadminapi.php:235 pntemplates/faq_admin_view.htm:4
-#: pntemplates/faq_user_menu.htm:7
-msgid "View FAQ list"
-msgstr ""
-
-#: pnadminapi.php:239 pntemplates/faq_admin_new.htm:3
-msgid "Create a FAQ"
-msgstr ""
-
-#: pnadminapi.php:243
-msgid "Purge PermaLinks"
-msgstr ""
-
-#: pnadminapi.php:246 pntemplates/faq_admin_modifyconfig.htm:4
-#: pntemplates/faq_admin_modifyconfig.htm:5
-msgid "Settings"
-msgstr ""
-
-#: pnuser.php:121
+#: lib/FAQ/Controller/User.php:105
 msgid "Invalid category passed."
 msgstr ""
 
-#: pnuser.php:226
+#: lib/FAQ/Controller/User.php:204
 msgid "Failed to get any items"
 msgstr ""
 
-#: pnuser.php:293
+#: lib/FAQ/Controller/User.php:258
 msgid "Thank you for your question"
 msgstr ""
 
-#: pntemplates/faq_user_view.htm:13
-msgid "Recent FAQs"
+#: lib/FAQ/Controller/Admin.php:73
+msgid "Done! Item created."
 msgstr ""
 
-#: pntemplates/faq_user_view.htm:19 pntemplates/faq_admin_new.htm:13
-#: pntemplates/faq_admin_modify.htm:15 pntemplates/faq_admin_view.htm:43
-#: pntemplates/faq_user_display.htm:5
-msgid "Question"
+#: lib/FAQ/Controller/Admin.php:137
+msgid "Done! Item updated."
 msgstr ""
 
-#: pntemplates/faq_user_view.htm:26 pntemplates/faq_admin_new.htm:22
-#: pntemplates/faq_admin_modify.htm:24 pntemplates/faq_user_display.htm:8
-msgid "Answer"
+#: lib/FAQ/Controller/Admin.php:188
+msgid "Done! Item deleted."
 msgstr ""
 
-#: pntemplates/faq_admin_new.htm:17 pntemplates/faq_admin_modify.htm:19
-msgid "PermaLink URL title"
+#: lib/FAQ/Controller/Admin.php:216
+msgid "Purging of the pemalinks was successful"
 msgstr ""
 
-#: pntemplates/faq_admin_new.htm:19 pntemplates/faq_admin_modify.htm:21
-msgid "(Blank = auto-generate)"
+#: lib/FAQ/Controller/Admin.php:218
+msgid "Purging of the pemalinks has failed"
 msgstr ""
 
-#: pntemplates/faq_admin_new.htm:27 pntemplates/faq_admin_modify.htm:29
-#: pntemplates/faq_admin_view.htm:11 pntemplates/faq_admin_view.htm:46
-msgid "Category"
+#: lib/FAQ/Controller/Admin.php:267
+msgid "Edit"
 msgstr ""
 
-#: pntemplates/faq_admin_new.htm:28 pntemplates/faq_admin_modify.htm:30
-#: pntemplates/faq_admin_view.htm:12
-msgid "Choose a category"
+#: lib/FAQ/Controller/Admin.php:271
+msgid "Delete"
 msgstr ""
 
-#: pntemplates/faq_admin_new.htm:39
-msgid "Create"
+#: lib/FAQ/Controller/Admin.php:343
+msgid "Done! Module configuration updated."
 msgstr ""
 
-#: pntemplates/faq_admin_new.htm:40 pntemplates/faq_admin_modifyconfig.htm:30
-#: pntemplates/faq_admin_delete.htm:17 pntemplates/faq_admin_modify.htm:70
-msgid "Cancel"
+#. ! this defines the module's url
+#: lib/FAQ/Version.php:22
+msgid "faq"
 msgstr ""
 
-#: pntemplates/faq_admin_modifyconfig.htm:10
-msgid "General settings"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:12
-msgid "Enable categorization"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:16
-msgid "Items per page"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:21
-msgid "PermaLinks"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:23
-msgid "Add category title to PermaLink"
-msgstr ""
-
-#: pntemplates/faq_admin_modifyconfig.htm:29
-msgid "Update Configuration"
-msgstr ""
-
-#: pntemplates/faq_admin_delete.htm:2
-msgid "Delete FAQ"
-msgstr ""
-
-#: pntemplates/faq_admin_delete.htm:7
-msgid "Do you really want to delete this FAQ?"
-msgstr ""
-
-#: pntemplates/faq_admin_delete.htm:14
-msgid "Confirmation prompt"
-msgstr ""
-
-#: pntemplates/faq_admin_delete.htm:16
-msgid "Confirm deletion?"
-msgstr ""
-
-#: pntemplates/faq_admin_modify.htm:3
+#: templates/admin/modify.tpl:2
 msgid "Update FAQ"
 msgstr ""
 
-#: pntemplates/faq_admin_modify.htm:46
+#: templates/admin/modify.tpl:14 templates/admin/newfaq.tpl:12
+#: templates/admin/view.tpl:42 templates/user/display.tpl:3
+#: templates/user/view.tpl:18
+msgid "Question"
+msgstr ""
+
+#: templates/admin/modify.tpl:18 templates/admin/newfaq.tpl:16
+msgid "PermaLink URL title"
+msgstr ""
+
+#: templates/admin/modify.tpl:20 templates/admin/newfaq.tpl:18
+msgid "(Blank = auto-generate)"
+msgstr ""
+
+#: templates/admin/modify.tpl:23 templates/admin/newfaq.tpl:21
+#: templates/user/display.tpl:6 templates/user/view.tpl:25
+msgid "Answer"
+msgstr ""
+
+#: templates/admin/modify.tpl:28 templates/admin/newfaq.tpl:26
+#: templates/admin/view.tpl:10 templates/admin/view.tpl:45
+msgid "Category"
+msgstr ""
+
+#: templates/admin/modify.tpl:29 templates/admin/newfaq.tpl:27
+#: templates/admin/view.tpl:11
+msgid "Choose a category"
+msgstr ""
+
+#: templates/admin/modify.tpl:45
 msgid "Meta data"
 msgstr ""
 
-#: pntemplates/faq_admin_modify.htm:52 pntemplates/faq_user_display.htm:13
-#: pntemplates/faq_user_display.htm:17
+#: templates/admin/modify.tpl:51 templates/user/display.tpl:11
+#: templates/user/display.tpl:15
 #, php-format
 msgid "Submitted by %s"
 msgstr ""
 
-#: pntemplates/faq_admin_modify.htm:56 pntemplates/faq_user_display.htm:22
+#: templates/admin/modify.tpl:55 templates/user/display.tpl:20
 #, php-format
 msgid "Answered by %s"
 msgstr ""
 
-#: pntemplates/faq_admin_modify.htm:60
+#: templates/admin/modify.tpl:59
 #, php-format
 msgid "Created by %1$s on %2$s"
 msgstr ""
 
-#: pntemplates/faq_admin_modify.htm:64
+#: templates/admin/modify.tpl:63
 #, php-format
 msgid "Updated by %1$s on %2$s"
 msgstr ""
 
-#: pntemplates/faq_admin_modify.htm:69
+#: templates/admin/modify.tpl:68 templates/admin/modifyconfig.tpl:27
 msgid "Update"
 msgstr ""
 
-#: pntemplates/faq_search_options.htm:4 pntemplates/faq_user_menu.htm:3
-#: pntemplates/faq_admin_menu.htm:4
-msgid "FAQs"
+#: templates/admin/modify.tpl:69 templates/admin/newfaq.tpl:39
+#: templates/admin/delete.tpl:16 templates/admin/modifyconfig.tpl:28
+#: templates/user/ask.tpl:22
+msgid "Cancel"
 msgstr ""
 
-#: pntemplates/faq_user_main.htm:4
-msgid "Categories"
+#: templates/admin/newfaq.tpl:38
+msgid "Create"
 msgstr ""
 
-#: pntemplates/faq_admin_view.htm:34
+#: templates/admin/view.tpl:33
 msgid "Filter"
 msgstr ""
 
-#: pntemplates/faq_admin_view.htm:35
+#: templates/admin/view.tpl:34
 msgid "Reset"
 msgstr ""
 
-#: pntemplates/faq_admin_view.htm:42
+#: templates/admin/view.tpl:41
 msgid "Internal ID"
 msgstr ""
 
-#: pntemplates/faq_admin_view.htm:44
+#: templates/admin/view.tpl:43
 msgid "Answered"
 msgstr ""
 
-#: pntemplates/faq_admin_view.htm:48
+#: templates/admin/view.tpl:47
 msgid "Options"
 msgstr ""
 
-#: pntemplates/faq_admin_view.htm:58
+#: templates/admin/view.tpl:57
 msgid "Yes"
 msgstr ""
 
-#: pntemplates/faq_admin_view.htm:60
+#: templates/admin/view.tpl:59
 msgid "No"
 msgstr ""
 
-#: pntemplates/faq_admin_view.htm:75
+#: templates/admin/view.tpl:74
 msgid "No items found."
 msgstr ""
 
-#: pntemplates/faq_user_menu.htm:8 pntemplates/faq_user_ask.htm:3
-#: pntemplates/faq_user_ask.htm:9
-msgid "Submit a question"
+#: templates/admin/delete.tpl:1
+msgid "Delete FAQ"
 msgstr ""
 
-#: pntemplates/faq_user_ask.htm:4
+#: templates/admin/delete.tpl:6
+msgid "Do you really want to delete this FAQ?"
+msgstr ""
+
+#: templates/admin/delete.tpl:13
+msgid "Confirmation prompt"
+msgstr ""
+
+#: templates/admin/delete.tpl:15
+msgid "Confirm deletion?"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:9
+msgid "General settings"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:11
+msgid "Enable categorization"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:15
+msgid "Items per page"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:20
+msgid "PermaLinks"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:22
+msgid "Add category title to PermaLink"
+msgstr ""
+
+#: templates/user/view.tpl:12
+msgid "Recent FAQs"
+msgstr ""
+
+#: templates/user/ask.tpl:3
 msgid ""
 "Before submitting a question please check existing FAQ's as your question "
 "may have already been answered. If not then please submit your question via "
@@ -293,14 +284,22 @@ msgid ""
 "(s)."
 msgstr ""
 
-#: pntemplates/faq_user_ask.htm:12
+#: templates/user/ask.tpl:11
 msgid "Your name"
 msgstr ""
 
-#: pntemplates/faq_user_ask.htm:17
+#: templates/user/ask.tpl:16
 msgid "Content"
 msgstr ""
 
-#: pntemplates/faq_user_ask.htm:22
+#: templates/user/ask.tpl:21
 msgid "Submit"
+msgstr ""
+
+#: templates/user/main.tpl:3
+msgid "Categories"
+msgstr ""
+
+#: templates/search/options.tpl:3
+msgid "FAQs"
 msgstr ""
