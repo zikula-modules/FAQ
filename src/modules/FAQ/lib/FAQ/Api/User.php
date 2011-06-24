@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zikula Application Framework
  *
@@ -8,9 +9,9 @@
  * @package Zikula_Value_Addons
  * @subpackage FAQ
  */
-
 class FAQ_Api_User extends Zikula_AbstractApi
 {
+
     /**
      * get all FAQs
      *
@@ -41,7 +42,7 @@ class FAQ_Api_User extends Zikula_AbstractApi
         }
 
         $args['catFilter'] = array();
-        if (isset($args['category']) && !empty($args['category'])){
+        if (isset($args['category']) && !empty($args['category'])) {
             if (is_array($args['category'])) {
                 $args['catFilter'] = $args['category'];
             } elseif (isset($args['property'])) {
@@ -57,14 +58,14 @@ class FAQ_Api_User extends Zikula_AbstractApi
         }
 
         // define the permission filter to apply
-        $permFilter = array(array('realm'          => 0,
-                        'component_left' => 'FAQ',
-                        'instance_left'  => 'faqid',
-                        'instance_right' => '',
-                        'level'          => ACCESS_READ));
+        $permFilter = array(array('realm' => 0,
+                'component_left' => 'FAQ',
+                'instance_left' => 'faqid',
+                'instance_right' => '',
+                'level' => ACCESS_READ));
 
         // get the objects from the db
-        $objArray = DBUtil::selectObjectArray('faqanswer', $whereclause, $args['order'], $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
+        $objArray = DBUtil::selectObjectArray('faqanswer', $whereclause, $args['order'], $args['startnum'] - 1, $args['numitems'], '', $permFilter, $args['catFilter']);
 
         // Check for an error with the database code, and if so set an appropriate
         // error message and return
@@ -100,11 +101,11 @@ class FAQ_Api_User extends Zikula_AbstractApi
         }
 
         // define the permission filter to apply
-        $permFilter = array(array('realm'          => 0,
-                        'component_left' => 'FAQ',
-                        'instance_left'  => 'faqid',
-                        'instance_right' => '',
-                        'level'          => ACCESS_READ));
+        $permFilter = array(array('realm' => 0,
+                'component_left' => 'FAQ',
+                'instance_left' => 'faqid',
+                'instance_right' => '',
+                'level' => ACCESS_READ));
 
         if (isset($args['faqid']) && is_numeric($args['faqid'])) {
             return DBUtil::selectObjectByID('faqanswer', $args['faqid'], 'faqid', '', $permFilter);
@@ -121,7 +122,7 @@ class FAQ_Api_User extends Zikula_AbstractApi
     public function countitems($args)
     {
         $args['catFilter'] = array();
-        if (isset($args['category']) && !empty($args['category'])){
+        if (isset($args['category']) && !empty($args['category'])) {
             if (is_array($args['category'])) {
                 $args['catFilter'] = $args['category'];
             } elseif (isset($args['property'])) {
@@ -164,7 +165,7 @@ class FAQ_Api_User extends Zikula_AbstractApi
         if ($args['func'] == 'view' && isset($args['args']['prop'])) {
             $vars = $args['args']['prop'];
             if (isset($args['args']['cat'])) {
-                $vars .= '/'.$args['args']['cat'];
+                $vars .= '/' . $args['args']['cat'];
             }
         }
 
@@ -177,7 +178,7 @@ class FAQ_Api_User extends Zikula_AbstractApi
             // get the item (will be cached by DBUtil)
             $item = ModUtil::apiFunc('FAQ', 'user', 'get', array('faqid' => $args['args']['faqid']));
             if (ModUtil::getVar('FAQ', 'addcategorytitletopermalink') && isset($args['args']['cat'])) {
-                $vars = $args['args']['cat'].'/'.$item['urltitle'];
+                $vars = $args['args']['cat'] . '/' . $item['urltitle'];
             } else {
                 $vars = $item['urltitle'];
             }
@@ -233,10 +234,10 @@ class FAQ_Api_User extends Zikula_AbstractApi
             $args['vars'] = array_slice($args['vars'], $nextvar);
             System::queryStringSetVar('prop', (string)$args['vars'][0]);
 
-            if (isset ($args['vars'][1])) {
+            if (isset($args['vars'][1])) {
                 // check if there's a page arg
                 $varscount = count($args['vars']);
-                ($args['vars'][$varscount-2] == 'page') ? $pagersize = 2 : $pagersize = 0;
+                ($args['vars'][$varscount - 2] == 'page') ? $pagersize = 2 : $pagersize = 0;
                 // extract the category path
                 $cat = implode('/', array_slice($args['vars'], 1, $varscount - $pagersize - 1));
                 System::queryStringSetVar('cat', $cat);
@@ -245,7 +246,7 @@ class FAQ_Api_User extends Zikula_AbstractApi
 
         // identify the correct parameter to identify the page
         if (FormUtil::getPassedValue('func') == 'display') {
-            if (ModUtil::getVar('FAQ', 'addcategorytitletopermalink') && !empty($args['vars'][$nextvar+1])) {
+            if (ModUtil::getVar('FAQ', 'addcategorytitletopermalink') && !empty($args['vars'][$nextvar + 1])) {
                 $nextvar++;
             }
             if (is_numeric($args['vars'][$nextvar])) {
@@ -264,15 +265,15 @@ class FAQ_Api_User extends Zikula_AbstractApi
      */
     public function getmodulemeta()
     {
-        return array('viewfunc'    => 'view',
-                'displayfunc' => 'display',
-                'newfunc'     => 'newfaq',
-                'createfunc'  => 'create',
-                'modifyfunc'  => 'modify',
-                'updatefunc'  => 'update',
-                'deletefunc'  => 'delete',
-                'titlefield'  => 'question',
-                'itemid'      => 'faqid');
+        return array('viewfunc' => 'view',
+            'displayfunc' => 'display',
+            'newfunc' => 'newfaq',
+            'createfunc' => 'create',
+            'modifyfunc' => 'modify',
+            'updatefunc' => 'update',
+            'deletefunc' => 'delete',
+            'titlefield' => 'question',
+            'itemid' => 'faqid');
     }
 
     /**
@@ -297,4 +298,5 @@ class FAQ_Api_User extends Zikula_AbstractApi
 
         return $links;
     }
+
 }

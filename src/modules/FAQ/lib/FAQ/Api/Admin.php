@@ -59,9 +59,6 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
             return LogUtil::registerError($this->__('Error! Creation attempt failed.'));
         }
 
-        // Let any hooks know that we have created a new item
-//        $this->callHooks('item', 'create', $faq['faqid'], array('module' => 'FAQ'));
-
         // Return the id of the newly created item to the calling process
         return $faq['faqid'];
     }
@@ -95,8 +92,7 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
             return LogUtil::registerError($this->__('Error! Deletion attempt failed.'));
         }
 
-        // Let any hooks know that we have deleted an item
-//        $this->callHooks('item', 'delete', $args['faqid'], array('module' => 'FAQ'));
+        $this->notifyHooks(new Zikula_ProcessHook('faq.ui_hooks.questions.process_delete', $args['faqid']));
 
         return true;
     }
@@ -150,9 +146,6 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
         if (!DBUtil::updateObject($faq, 'faqanswer', '', 'faqid')) {
             return LogUtil::registerError($this->__('Error! Update attempt failed.'));
         }
-
-        // Let any hooks know that we have updated an item
-//        $this->callHooks('item', 'update', $faq['faqid'], array('module' => 'FAQ'));
 
         return true;
     }

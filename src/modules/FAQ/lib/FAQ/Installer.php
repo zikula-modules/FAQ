@@ -38,6 +38,7 @@ class FAQ_Installer extends Zikula_AbstractInstaller
             LogUtil::registerStatus(__('Warning! Could not create the default FAQ category tree. If you want to use categorisation with FAQ, register at least one property for the module in the Category Registry.', $dom));
             $modvars['enablecategorization'] = false;
         }
+        HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
 
         // initialisation successful
         return true;
@@ -62,7 +63,9 @@ class FAQ_Installer extends Zikula_AbstractInstaller
             case '2.2':
             case '2.3':
             case '2.3.1':
-            // further upgrade routines
+                HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
+            case '2.3.2':
+                // further upgrade routines
         }
 
         // upgrade successful

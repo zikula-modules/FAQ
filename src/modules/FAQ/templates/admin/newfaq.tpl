@@ -33,7 +33,6 @@
                 </div>
                 {/if}
             </fieldset>
-            {* modcallhooks hookobject=item hookaction=new module=FAQ *}
             <div class="z-buttons z-formbuttons">
                 {button src="button_ok.png" set="icons/extrasmall" __alt="Create" __title="Create" __text="Create"}
                 <a href="{modurl modname="FAQ" type="admin" func='view'}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
