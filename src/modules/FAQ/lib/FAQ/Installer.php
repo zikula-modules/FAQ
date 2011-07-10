@@ -87,8 +87,8 @@ class FAQ_Installer extends Zikula_AbstractInstaller
 
         // delete entries from category registry
         ModUtil::dbInfoLoad('Categories');
-        DBUtil::deleteWhere('categories_registry', "crg_modname = 'FAQ'");
-        DBUtil::deleteWhere('categories_mapobj', "cmo_modname = 'FAQ'");
+        DBUtil::deleteWhere('categories_registry', "modname = 'FAQ'");
+        DBUtil::deleteWhere('categories_mapobj', "modname = 'FAQ'");
 
         // deletion successful
         return true;
