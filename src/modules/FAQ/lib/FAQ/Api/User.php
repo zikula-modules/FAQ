@@ -54,7 +54,9 @@ class FAQ_Api_User extends Zikula_AbstractApi
 
         $whereclause = '';
         if (isset($args['answered']) && is_bool($args['answered']) && $args['answered']) {
-            $whereclause = ' WHERE pn_answer != \'\'';
+            $tables = DBUtil::getTables();
+            $columns = $tables['faqanswer_column'];
+            $whereclause = " WHERE $columns[answer] != ''";
         }
 
         // define the permission filter to apply
