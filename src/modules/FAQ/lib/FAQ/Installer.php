@@ -64,6 +64,30 @@ class FAQ_Installer extends Zikula_AbstractInstaller
             case '2.3':
             case '2.3.1':
                 HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
+                $prefix = $this->serviceManager['prefix'];
+                $connection = Doctrine_Manager::getInstance()->getConnection('default');
+                $sqlStatements = array();
+                // N.B. statements generated with PHPMyAdmin
+                $sqlStatements[] = 'RENAME TABLE ' . $prefix . '_faqanswer' . " TO `faqanswer`";
+                $sqlStatements[] = "ALTER TABLE `faqanswer` 
+CHANGE `pn_id` `id` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+CHANGE `pn_question` `question` LONGTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+CHANGE `pn_urltitle` `urltitle` LONGTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+CHANGE `pn_answer` `answer` LONGTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+CHANGE `pn_submittedbyid` `submittedbyid` INT( 11 ) NOT NULL ,
+CHANGE `pn_answeredbyid` `answeredbyid` INT( 11 ) NOT NULL ,
+CHANGE `pn_obj_status` `obj_status` VARCHAR( 1 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'A',
+CHANGE `pn_cr_date` `cr_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
+CHANGE `pn_cr_uid` `cr_uid` INT( 11 ) NOT NULL DEFAULT '0',
+CHANGE `pn_lu_date` `lu_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
+CHANGE `pn_lu_uid` `lu_uid` INT( 11 ) NOT NULL DEFAULT '0'";
+                foreach ($sqlStatements as $sql) {
+                    $stmt = $connection->prepare($sql);
+                    try {
+                        $stmt->execute();
+                    } catch (Exception $e) {
+                    }   
+                }
             case '2.3.2':
                 // further upgrade routines
         }

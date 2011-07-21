@@ -26,14 +26,14 @@ function FAQ_tables()
     $table = array();
 
     // Full table definition
-    $table['faqanswer'] = DBUtil::getLimitedTablename('faqanswer');
+    $table['faqanswer'] = 'faqanswer';
     $table['faqanswer_column'] = array(
-        'faqid' => 'pn_id',
-        'question' => 'pn_question',
-        'urltitle' => 'pn_urltitle',
-        'answer' => 'pn_answer',
-        'submittedbyid' => 'pn_submittedbyid',
-        'answeredbyid' => 'pn_answeredbyid'
+        'faqid' => 'id',
+        'question' => 'question',
+        'urltitle' => 'urltitle',
+        'answer' => 'answer',
+        'submittedbyid' => 'submittedbyid',
+        'answeredbyid' => 'answeredbyid'
     );
     $table['faqanswer_column_def'] = array(
         'faqid' => 'I NOTNULL AUTO PRIMARY',
@@ -49,7 +49,7 @@ function FAQ_tables()
     $table['faqanswer_primary_key_column'] = 'faqid';
 
     // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition($table['faqanswer_column'], 'pn_');
+    ObjectUtil::addStandardFieldsToTableDefinition($table['faqanswer_column']);
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['faqanswer_column_def']);
 
     // old tables for upgrade purposes
