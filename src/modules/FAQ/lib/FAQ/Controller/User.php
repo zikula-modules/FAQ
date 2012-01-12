@@ -168,7 +168,7 @@ class FAQ_Controller_User extends Zikula_AbstractController
 
         // check out if the contents are cached.
         if ($this->view->is_cached('user/display.tpl')) {
-            return $this->view->fetch('FAQ_user_display.tpl');
+            return $this->view->fetch('user/display.tpl');
         }
 
         // Get the faq
