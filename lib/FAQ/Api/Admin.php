@@ -60,17 +60,17 @@ class FAQ_Api_Admin extends Zikula_AbstractApi
         else {
         	// if user is loggedIn we get the datas
         	if (UserUtil::isLoggedIn() === true) {
-        	$uid = UserUtil::getVar('uid');
+        	    $uid = UserUtil::getVar('uid');
         	}
         	// user is guest
         	else {
-        		$uid = 1; // user is guest
+        	    $uid = 1; // user is guest
         	}
         	// we build an object of helper class
         	$helper = new FAQ_Util_Helper();
         	// if the user is not in admin group we send an email
         	if ($helper->isInAdminGroup($uid) == false) {
-        		$helper->sendMessage($faq['question'], $uid, $faq['submittedby']);
+        	    $helper->sendMessage($faq['question'], $uid, $faq['submittedby']);
         	}
         }
 
