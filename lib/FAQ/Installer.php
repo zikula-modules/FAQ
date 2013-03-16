@@ -101,10 +101,13 @@ CHANGE `pn_lu_uid` `lu_uid` INT( 11 ) NOT NULL DEFAULT '0'";
      */
     public function uninstall()
     {
-        // drop ytable
+        // drop table
         if (!DBUtil::dropTable('faqanswer')) {
             return false;
         }
+        
+        // unregister hook subscriber bundles
+        HookUtil::unregisterSubscriberBundles($this->version->getHookSubscriberBundles());
 
         // delete module variables
         $this->delVars();
