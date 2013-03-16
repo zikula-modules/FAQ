@@ -24,7 +24,6 @@ class FAQ_Util_Helper
      */
     public function sendMessage($question, $uid, $submittedBy)
     {
-         
         $dom = ZLanguage::getModuleDomain('FAQ');
 
         $question = nl2br($question);
@@ -41,10 +40,9 @@ class FAQ_Util_Helper
         // if a guest has entered his name
         if ($submittedBy != '') {
             $userName = $submittedBy;
-        }
-        // else we take the name by datas if user is loggedIn
-        // or we call him guest
-        else {
+        } else {
+            // else we take the name by datas if user is loggedIn
+            // or we call him guest
             $userName = $userDatas[0];
         }
 
@@ -89,8 +87,7 @@ class FAQ_Util_Helper
      * @return return boolean , true if user is in admingroup otherwise false
      */
     public function isInAdminGroup($uid)
-    {
-         
+    {         
         $groupIds = UserUtil::getGroupsForUser($uid);
         if (in_array(2, $groupIds)) {
             return true;
